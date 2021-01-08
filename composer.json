@@ -1,0 +1,13 @@
+{
+    "name": "coyotech/blog",
+    "description": "OCR Blog Project 5",
+    "require": {
+        "twig/twig": "3.0"
+    },
+    "authors": [
+        {
+            "name": "Nicolas Jumeaucourt",
+            "email": "contact@coyotech.fr"
+        }
+    ]
+}

@@ -25,9 +25,9 @@ class articleController extends Controller {
 
 	public function view($articleId) {
 		$article = new Article();
-		$articles = $article->getArticle($articleId);
+		$article = $article->getArticle($articleId);
 
-		echo $this->twig->render('article/articleView.php.twig', ['articles' => $articles]);
+		echo $this->twig->render('article/articleView.php.twig', ['article' => $article]);
 
 	}
 

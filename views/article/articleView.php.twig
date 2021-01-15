@@ -1,0 +1,103 @@
+{% extends 'common/template.php.twig' %}
+
+{% block title %}
+
+	<title>CoyoTech Blog | {{ article.article_title }}</title>
+
+{% endblock %}
+{% block head %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block content %}
+
+	<div style="background-color: #fff;" class="container pt-5">
+	<div class="row pt-5">
+		<div class="col-12">
+			<h4 class="col-md-8 mx-auto text-center ap-title">{{ article.article_title }}</h4>
+			<h1 class="col-md-8 mx-auto text-center ap-intro">{{ article.article_intro}}</h1>
+			<p class="col-md-8 mx-auto text-center ap-author-date pb-5">Nicolas Jumeaucourt / Publié le {{ article.update_date|date("d/m/Y") }}</p>
+			<h2 class="col-md-8 mx-auto ap-2nd-intro pb-5">{{ article.article_catchphrase }}</h2>
+			<img src="../assets/article-hero-img-{{ article.article_id }}.png" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="...">
+			<div class="col-md-8 mx-auto">
+			{# {% apply html_to_markdown %} #}
+				<p class="ap-text">{{ article.article_content }}</p>
+			{# {% endapply %} #}
+			</div>
+			<div class="col-md-8 pt-3 pb-1 mt-5 mb-2 mx-auto comment-title">
+				<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="public/images/comment-icon.png" alt=""></span>Commentaires</h3>
+			</div>
+			<div class="col-md-8 mx-auto comment-list">
+				<ol class="comment-ol">
+					<li>
+						<div class="comment-body pt-4">
+							<div class="author-date-comment pb-2">
+								<div class="comment-author">Coyotebaba / </div>
+								<div class="comment-date">4 janvier 2021 à 18h26</div>
+							</div>
+							<p class="comment-content pb-3">Un article bien intéressant. J'ai appris plein de choses...</p>
+						</div>
+					</li>
+					<li>
+						<div class="comment-body pt-4">
+							<div class="author-date-comment pb-2">
+								<div class="comment-author">Victor / </div>
+								<div class="comment-date">4 janvier 2021 à 18h43</div>
+							</div>
+							<p class="comment-content pb-3">Effectivement. C'était très instructif !</p>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<div class="col-md-8 mx-auto commentform-container">
+				<div class="col-md-11 mx-auto pt-4 pb-4">
+					<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="public/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
+					<form action="#" method="post" id="commentform" class="commentform">
+						<p class="comment-notes">
+							<span id="email-notes">Votre adresse de messagerie ne sera pas publiée.</span>
+						 	Les champs obligatoires sont indiqués avec
+						 	<span class="required">*</span>
+						</p>
+						<div class="row">
+							<div class="form-group col-12">
+								<textarea class="form-control comments-textarea" placeholder="Commentaire" name="comment" id="comment" rows="4"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-6">
+								<input class="comment-input comment-author" id="author" name="author" placeholder="Pseudo*" type="text" value required="required">
+								<input class="comment-input comment-url" id="url" name="url" type="text" placeholder="Site Web">
+							</div>
+							<div class="form-group col-md-6">
+								<input class="comment-input comment-email" id="email" name="email" placeholder="Adresse email*" type="email" value required="required">
+								<input class="comment-submit" id="submit" name="submit" type="submit" value="Laisser un commentaire">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+	{{parent()}}
+
+{% endblock %}

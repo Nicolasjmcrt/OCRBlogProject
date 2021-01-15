@@ -1,0 +1,74 @@
+{% extends 'common/template.php.twig' %}
+
+{% block title %}
+
+	<title>CoyoTech Blog | Articles</title>
+
+{% endblock %}
+{% block head %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+	{{parent()}}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+	<div style="background-color: #fff;" class="container container-last-articles pt-5 mt-5">
+		<div class="row mb-5 no-gutters">
+			<div class="col-md-2"></div>
+			<div class="col-12 col-md-8 pt-5 last-articles-title">
+				<h3>Tous les articles</h3>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
+		<div class="row article-container">
+
+        {% for article in articles %}
+			<div class="col-12 article-block">
+				<div class="col-12 col-lg-3 aai-container">
+					<img src="../assets/images/article-img-{{ article.article_id }}.png" class="img-thumbnail all-articles-img" alt="...">
+				</div>
+				<div class="col-12 col-lg-6">
+					<div class="card-title-and-date">
+            			<h5 class="card-title article-title">{{ article.title}}</h5>
+            			<p class="card-date">{{ article.update_date|date("d/m/Y") }}</p>
+            		</div>
+            		<p class="card-text article-card-text">{{ article.intro }}</p>
+            		<p class="card-text article-card-text-2">{{ article.catchphrase }}</p>
+				</div>
+                <div class="col-12 col-lg-3 article-link mt-2">
+                    <a class="btn btn-outline-info" href="Article/view?={{ article.article_id }}" role="button">Lire l'article</a>
+                </div>	
+			</div>
+        {% endfor %}
+		</div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+
+	{{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+	{{parent()}}
+
+{% endblock %}
+
+
+
+
+
+

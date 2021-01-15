@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html>
+     {% block head %}
+     
+     <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	     {% block title %}{% endblock %}
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+	     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+	     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+	     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&display=swap" rel="stylesheet">
+	     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+     </head>
+     
+     {% endblock %}
+<body>
+     {% block header %}
+     
+     <header class="mb-4">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark navbar-bg navbar-blog" style="background-image: url(../assets/images/pattern-shapes.png);">
+  			<a class="navbar-brand navbar-title" href="#">Coyo<span>Tech</span></a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			<div class="collapse navbar-collapse admin-nav-div logo-nav-account" id="navbarNavDropdown">
+    			<ul class="navbar-nav">
+      				<li class="nav-item active">
+        				<a class="nav-link" href="/blog-mvc/">Accueil <span class="sr-only">(current)</span></a>
+      				</li>
+      				<li class="nav-item">
+        				<a class="nav-link" href="/blog-mvc/article/">Articles</a>
+      				</li>
+      				<li class="nav-item">
+        				<a class="nav-link" href="#">Contact</a>
+      				</li>
+      				<li class="nav-item">
+       					<a class="nav-link" href="#">Mon C.V.</a>
+      				</li>
+    			</ul>
+          		<ul class="account-nav">
+            		<li class="nav-item dropdown">
+        				<a class="nav-link dropdown-toggle account-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mon compte
+        				</a>
+        				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          					<a class="dropdown-item account-links" href="#">S'inscrire</a>
+          					<a class="dropdown-item account-links" href="#">Se connecter</a>
+        				</div>
+      				</li>
+          		</ul>
+  			</div>
+		</nav>
+	</header>
+     
+     {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+    
+<footer style="border-top: 2px solid #11b5e4; background-image: url(../assets/images/pattern-shapes.png); background-color: #201d1d; margin-top: 30px;">
+	<div class="container-fluid">
+		<div class="row pt-4">
+			<div class="col-12 col-lg-5 mb-2 footer-logo text-center">
+				<h4>Coyo<span>Tech</span></h4>
+			</div>
+			<div class="col-12 col-lg-2 mb-4 sm-links">
+				<a href="https://www.linkedin.com/in/nicolas-jumeaucourt-7506b4150/" target="_blank"><img src="../assets/images/linkedin-icon.png" alt=""></a>
+				<a href="https://twitter.com/NJumeaucourt" target="_blank"><img src="../assets/images/twitter-icon.png" alt=""></a>
+				<a href="#" target="_blank"><img src="../assets/images/github-icon.png" alt=""></a>
+			</div>
+			<div class="col-12 col-lg-5 admin-link text-center">
+
+				<!-- Link to modify : admin/index.php -->
+
+				<a href="admin/index.php">Administration du site</a>
+			</div>
+		</div>
+		<div class="row footer-bottom-part">
+			<div class="col-12 text-center">
+				<p>Copyright © 2020 CoyoTech</p>
+			</div>
+		</div>
+	</div>
+</footer>
+    
+    {% endblock %}	
+
+    {% block scripts %}
+    
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    {% endblock %}
+        
+    </body>
+</html>

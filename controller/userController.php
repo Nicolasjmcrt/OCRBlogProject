@@ -1,9 +1,10 @@
 <?php
 
-require_once('model/User.php');
+require_once ('model/User.php');
+require_once ('controller/Controller.php');
 
 
-class userController
+class userController extends Controller
 {
 	public function login()
 	{
@@ -26,8 +27,7 @@ class userController
 		$user = new User();
 		$users = $user->getUsers();
 
-		require('view/listUsers.php');
-
+		echo $this->twig->render('user/listUsers.php.twig', ['users' => $users]);
 	}
 
 

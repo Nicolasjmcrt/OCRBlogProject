@@ -1,39 +1,34 @@
 <?php
 
-require_once('model/Article.php');
+require_once ('model/Article.php');
+require_once ('controller/Controller.php');
 
-class articleController {
+class articleController extends Controller {
 
 	public function list() {
 		$article = new Article();
 		$articles = $article->getArticles();
-
-		require('view/listArticles.php');
+		echo $this->twig->render('article/listArticles.php.twig', ['articles' => $articles]);
 	}
 
 
 
-	public function lastArticles() {
-		$article = new Article();
-		$articles = $article->getLastArticles();
-
-		require('view/listArticles.php');
-	}
-
+	
 
 	public function backendList() {
 		$article = new Article();
-		$articles = $article->getArticles();
+		$articles = $article->getAllArticles();
 
-		require('view/backendArticlesList.php');
+		echo $this->twig->render('article/backendArticlesList.php.twig', ['articles' => $articles]);
 	}
 
 
 	public function view($articleId) {
 		$article = new Article();
+		$articles = $article->getArticle($articleId);
 
-		echo '<pre>';
-		print_r($article->getArticle($articleId));
+		echo $this->twig->render('article/articleView.php.twig', ['articles' => $articles]);
+
 	}
 
 

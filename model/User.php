@@ -7,7 +7,7 @@ class User extends Connect {
 	public function getUsers() {
 
 		$db = $this->dbConnect();
-		$req = $db->query('SELECT * FROM user');
+		$req = $db->query('SELECT * FROM user ORDER BY user_id DESC');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;

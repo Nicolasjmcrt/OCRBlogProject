@@ -1,0 +1,38 @@
+page d'accueil  /
+
+Liste des articles  /article
+
+Détail d'un article     /article/x
+
+Page de Login   /Login
+
+Page d'inscription  /Register
+
+
+Page C.V.   /C.V.
+
+
+
+Back
+
+
+
+Page Admin  /Admin
+
+Page de création d'article  /article/add
+
+Page de modification d'article  /article/edit/x
+
+Suppression d'article   /article/delete/x
+
+
+Page de création d'un utilisateur  /user/add
+
+Page de modification d'un utilisateur  /user/edit/x
+
+Suppression d'un utilisateur   /user/delete/x
+
+
+Liste des commentaires  /comment
+
+Validation commentaires     /comment/valide/x

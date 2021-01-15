@@ -1,0 +1,151 @@
+.bg-body {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+}
+
+
+
+
+/*--------------NAVBAR-ADMIN-------------------*/
+
+.navbar-bg {
+	background-color: #201d1d!important;
+}
+.navbar-title {
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+	font-weight: 100;
+	letter-spacing: -1px;
+	color: #11b5e4!important;
+}
+
+.navbar-title span {
+	font-weight: 500;
+}
+
+.active>.nav-link {
+	color: #11b5e4!important;
+}
+
+.admin-nav-div {
+	justify-content: space-between;
+}
+.logout-ul {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 0;
+	padding-inline-start: 0;
+}
+
+.logout-ul p {
+	margin-bottom: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	letter-spacing: -1px;
+	color: #11b5e4!important;
+}
+.logout-icon {
+	height: 14px;
+	margin-right: 10px;
+}
+
+
+/*-----------------------------------LOG-PAGE-FORM------------------------------------------*/
+
+
+
+.form-row {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.input-group-text img {
+	height: 20px;
+}
+
+.input-group-text {
+	background-color: #11b5e4;
+}
+
+.btn-login {
+	background-color: #11b5e4;
+	border-color:#11b5e4;
+	margin-bottom: 15px;
+}
+
+.lost-password {
+	color: #fff;
+}
+
+.lost-password:hover {
+	color: #11b5e4;
+}
+
+/*-------------------FOOTER-ADMIN-AND-LOG----------------*/
+
+.bg-footer {
+	background-color: #201d1d!important;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.footer-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.bg-footer a {
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	letter-spacing: -1px;
+	color: #11b5e4!important;
+}
+
+.bg-footer p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+	font-weight: 100;
+	letter-spacing: -1px;
+	color: #11b5e4!important;
+	margin-bottom: 0;
+}
+
+.bg-footer span {
+	font-weight: 500;
+}
+
+
+
+
+
+/*-------------------LIST USER VIEW----------------*/
+
+
+.trash-btn {
+	background-color: rgba(255, 255, 255, 0)!important;
+	border: none!important;
+}
+
+
+/*-------------------USER VIEW----------------*/
+
+.backto-icon {
+	height: 50px;
+}
+
+.btn-save {
+	background-color: #11b5e4;
+	border-color: #11b5e4;
+	color: #fff;
+}

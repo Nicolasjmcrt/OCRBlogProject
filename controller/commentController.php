@@ -1,8 +1,9 @@
 <?php
 
-require_once('model/Comment.php');
+require_once ('model/Comment.php');
+require_once ('controller/Controller.php');
 
-class commentController {
+class commentController extends Controller {
 
 	public function invalidCommentsList() {
 		$comment = new Comment();

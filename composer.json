@@ -2,7 +2,9 @@
     "name": "coyotech/blog",
     "description": "OCR Blog Project 5",
     "require": {
-        "twig/twig": "3.0"
+        "twig/twig": "3.0",
+        "michelf/php-markdown": "^1.9",
+        "twig/markdown-extra": "^3.2"
     },
     "authors": [
         {

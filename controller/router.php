@@ -10,8 +10,19 @@ class router
 	public function run()
 	{
 		$data = explode('/',$this->url);
-		$controller = $data[0].'Controller';
+	
+		if (! isset($data[0]) || empty ($data[0])) {
+			$controller = 'homeController';
+		} else {
+			$controller = $data[0].'Controller';
+		}
+		
+		if (! isset($data[1]) || empty ($data[1])) {
+			$method = 'list';
+		}
+		else {
 		$method = $data[1];
+		}
 		$params = null;
 		if (isset($data[2])) {
 			$params = $data[2];

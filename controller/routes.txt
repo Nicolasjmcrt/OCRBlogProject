@@ -1,12 +1,12 @@
-page d'accueil  /
+page d'accueil  /  OK 
 
-Liste des articles  /article
+Liste des articles  /article   OK
 
-Détail d'un article     /article/x
+Détail d'un article     /article/x   OK 
 
-Page de Login   /Login
+Page de Login   /Login vue OK mais faire Controller
 
-Page d'inscription  /Register
+Page d'inscription  /Register vue OK mais faire Controller
 
 
 Page C.V.   /C.V.
@@ -17,7 +17,7 @@ Back
 
 
 
-Page Admin  /Admin
+Page Admin  /Admin  OK mais non reliée
 
 Page de création d'article  /article/add
 
@@ -26,13 +26,13 @@ Page de modification d'article  /article/edit/x
 Suppression d'article   /article/delete/x
 
 
-Page de création d'un utilisateur  /user/add
+Page de création d'un utilisateur  /user/add 
 
-Page de modification d'un utilisateur  /user/edit/x
+Page de modification d'un utilisateur  /user/edit/x  OK 
 
 Suppression d'un utilisateur   /user/delete/x
 
 
-Liste des commentaires  /comment
+Liste des commentaires  /comment OK mais faire Controller
 
 Validation commentaires     /comment/valide/x

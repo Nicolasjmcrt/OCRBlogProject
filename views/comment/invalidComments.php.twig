@@ -1,0 +1,125 @@
+{% extends 'common/backTemplate.php.twig' %}
+
+{% block title %}
+
+    <title>CoyoTech | Commentaires</title>
+
+{% endblock %}
+
+{% block head %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+        {{parent()}}
+	
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1 style="color: #fff; padding-top: 20px;" >Commentaires en attente de validation</h1><br>
+        <!--"table-striped" = tableau avec alternance dans Bootstrap-->
+        <div class="container mb-5">
+        <div class="row">
+            <div class="col table-responsive">
+                <table class="table table-light table-striped table-hover table-sm">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="text-center th-align">Auteur du commentaire</th>
+                            <th scope="col" class="text-center th-align">Article concerné</th>
+                            <th scope="col" class="text-center th-align">Commentaires</th>
+                            <th scope="col" class="text-center th-align">Validation</th>
+                            <th scope="col" class="text-center th-align">Supprimer</th>
+                        </tr>
+                    </thead>
+                    <!--Remplissage du tableau à l'aide de la bdd-->
+                    
+                    {% for comment in comments %}
+                    <tbody class="tbody-light">
+                        <tr>
+                            <td class="text-center text-dark td-align">{{ comment.nickname }}</td>
+                            <td class="text-center text-info td-align">{{ comment.title }}</td>
+                            <td class="text-center td-align">{{ comment.content }}</td>
+                            <td class="text-center td-align">
+                            <!--Renvoi vers la page modifier-->
+                                <a href="/blog-mvc/comment/validate/{{ comment.comment_id }}"><img src="/blog-mvc/assets/images/check-icon.png" style="width: 25px;" alt=""></a>
+                            </td>
+                            <td class="text-center td-align">
+                                <button type="button" class="trash-btn" data-toggle="modal" data-target="#myModal" rel="{{ comment.comment_id }}" title="{{ comment.content }}"><img src="/blog-mvc/assets/images/trash.png" style="width: 23px;" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                    <!--fermeture du for-->
+                    {% else %}
+                      <div class="col-6 mx-auto alert alert-ok text-center" role="alert">
+                      Il n'y a plus de commentaires en attente !
+                      </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>          
+        </div>
+        
+    </div>
+</div>
+
+<!--Création de la "modal" à l'aide de Bootstrap-->
+
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Supprimer un commentaire ?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Voulez vous supprimer le commentaire suivant ?</p>
+          <p class="titre-user"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <!--ajout de la classe btn-url-supp sur le lien du bouton-->
+          <a href="/blog-mvc/Comment/delete/{{ comment.comment_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer le commentaire</a>
+        </div><!-- /.modal-footer -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+{% endblock %}
+
+{% block footer %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+    {{parent()}}
+    <script type="text/javascript">
+    $(document).ready(function(){
+    /*fonction au clic de la classe btn-supp*/
+      $('.trash-btn').click(function(){
+      /*définition de la valeur à supprimer*/
+        valsupp=$(this).attr('rel');
+        /*défintion du titre*/
+        titre=$(this).attr('title');
+        /*titre à afficher en "strong" à l'apparition du modal*/
+        $('.titre-user').html('<strong>'+titre+'</strong>');
+        /*définition de l'url a afficher*/
+        url='delete/'+valsupp;
+        /*quand suppression confirmée, retour à l'url prédéfinie*/
+        $('.btn-url-supp').attr('href',url);
+      });
+    });
+    </script>
+
+{% endblock %}

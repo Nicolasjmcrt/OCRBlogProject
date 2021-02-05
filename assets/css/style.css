@@ -1,9 +1,32 @@
 
 
 
+body {
+	font-family: 'Source Sans Pro', sans-serif!important;
+	font-size: 18px!important;
+	line-height: 30px!important;
+	font-weight: 300!important;
+	color: #858585!important;
+}
 
+strong {
+	font-family: 'Source Sans Pro', sans-serif!important;
+	font-size: 20px!important;
+	font-weight: 600!important;
+	color: #4b5157!important;
+	padding-top: 30px;
 
+}
 
+.alert-error {
+	color: #fff;
+	background-color: #e51c23;
+}
+
+.alert-ok {
+	color: #fff;
+	background-color: #4caf50;
+}
 /*---------------------------------------HEADER------------------------------------------------*/
 
 
@@ -36,6 +59,7 @@
 .account-nav {
 	padding-inline-start: 0;
 	margin-bottom: 0;
+	list-style-type: none;
 }
 .account-link {
 	padding-left: 0;
@@ -207,7 +231,7 @@
 
 
 
-.last-articles-title h3 {
+.last-articles-title h2 {
 	font-family: 'Big Shoulders Display', cursive;
 	font-weight: 700;
 	color: #11b5e4;
@@ -387,6 +411,7 @@
 	font-size: 16px;
 	line-height: 30px;
 	font-weight: 600;
+	padding: 0 10px;
 	color: #fff;
 	border: 1px solid #11b5e4;
 	background-color: #11b5e4;
@@ -477,11 +502,13 @@
 /*----------------------------------------HOME SECTION (ARTICLES)-------------------------------------*/
 
 
-
-/* .aai-container {
-	display: flex;
-	align-items: center!important;
-} */
+.articles-intro {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	color: #858585;
+	padding: 0 15px 45px;
+}
 
 .article-block {
 	border-bottom: 1px solid #eceef2;
@@ -517,8 +544,10 @@
 }
 
 .all-articles-img {
-	border-radius: 2rem;
-	border: none;
+	max-width: 200px;
+	border-radius: 20px;
+	border: none!important;
+	box-shadow: 0 0 15px rgb(0 0 0 / 15%);
 }
 
 .article-title {
@@ -543,11 +572,13 @@
 
 
 
-
+/* .av-container {
+	box-shadow: 0 0 8px rgb(121 121 121 / 35%);
+} */
 
 .ap-title {
 	font-family: 'Roboto', sans-serif;
-	font-size: 14px;
+	font-size: 25px;
 	font-weight: 700;
 	letter-spacing: -1px;
 	color: #11b5e4;
@@ -571,6 +602,12 @@
 	color: #858585;
 }
 
+.ap-author-date span {
+	font-weight: 600;
+	color: #4b5157;
+}
+
+
 .ap-2nd-intro {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
@@ -581,7 +618,7 @@
 }
 
 .article-hero-img {
-	border-radius: 2rem;
+	border-radius: 4rem;
 }
 
 .ap-text {
@@ -626,7 +663,7 @@
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	font-weight: 600;
-    color: #858585;
+    color: #4b5157;
     line-height: 24px;
 }
 
@@ -723,9 +760,54 @@
 	transform: translate(0, -5px);
 }
 
+.align-link {
+	display: flex;
+	justify-content: center;
+}
+.all-articles-link {
+	margin-top: 20px;
+    padding: 10px 30px 12px;
+    color: #fff;
+    text-align: center;
+    background: #11b5e4;
+    overflow: hidden;
+    border-radius: 25px;
+    max-width: 200px;
+    position: relative;
+    z-index: 1;
+}
 
+.all-articles-link a {
+	color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
 
+.all-articles-link::before {
+	content: "";
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin: -15px 0 0 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0b7c9c;
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 0% 50%;
+    -webkit-transform: scale3d(1,2,1);
+    transform: scale3d(1,2,1);
+    -webkit-transition: -webkit-transform 0.3s,opacity 0.3s;
+    transition: transform 0.3s,opacity 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(.7,0,.9,1);
+    transition-timing-function: cubic-bezier(.7,0,.9,1);
+}
 
+.all-articles-link:hover::before {
+    transform: scale3d(9,9,1);
+}
 
 
 /*------------------------------------------------------BACK SECTION------------------------------------------------------*/
@@ -739,8 +821,11 @@
 	background-attachment: fixed;
 }
 
-
-
+.titre-user strong {
+	font-weight: 400!important;
+	font-size: 14px!important;
+	line-height: 18px;
+}
 
 /*--------------NAVBAR-ADMIN-------------------*/
 
@@ -821,6 +906,16 @@
 	color: #11b5e4;
 }
 
+.login-title {
+	color: #11b5e4;
+	font-weight: 400;
+	font-size: 3rem;
+}
+
+.error-log-message {
+	font-weight: 600;
+	font-size: 30px;
+}
 /*-------------------FOOTER-ADMIN-AND-LOG----------------*/
 
 .bg-footer {
@@ -869,6 +964,14 @@
 .trash-btn {
 	background-color: rgba(255, 255, 255, 0)!important;
 	border: none!important;
+}
+
+.th-align {
+	vertical-align: middle!important;
+}
+
+.td-align {
+	vertical-align: middle!important;
 }
 
 

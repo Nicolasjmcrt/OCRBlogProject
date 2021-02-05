@@ -1,8 +1,10 @@
 {% extends 'common/template.php.twig' %}
 
+
+
 {% block title %}
 
-	<title>CoyoTech Blog | {{ article.article_title }}</title>
+	<title>CoyoTech Blog | {{ article.title }}</title>
 
 {% endblock %}
 {% block head %}
@@ -18,48 +20,47 @@
 {% endblock %}
 
 {% block content %}
-
+	
 	<div style="background-color: #fff;" class="container pt-5">
 	<div class="row pt-5">
-		<div class="col-12">
-			<h4 class="col-md-8 mx-auto text-center ap-title">{{ article.title }}</h4>
+		<div class="col-12 av-container">
+			<h4 class="col-md-8 mx-auto text-center ap-title mt-5">{{ article.title }}</h4>
 			<h1 class="col-md-8 mx-auto text-center ap-intro">{{ article.intro}}</h1>
-			<p class="col-md-8 mx-auto text-center ap-author-date pb-5">Nicolas Jumeaucourt / Publié le {{ article.update_date|date("d/m/Y") }}</p>
+			<p class="col-md-8 mx-auto text-center ap-author-date pb-5"><span>{{ article.first_name }} {{ article.last_name }}</span> / Mis à jour le {{ article.update_date|date("d/m/Y") }}</p>
 			<h2 class="col-md-8 mx-auto ap-2nd-intro pb-5">{{ article.catchphrase }}</h2>
-			<img src="../assets/article-hero-img-{{ article.article_id }}.png" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="...">
+			<img src="/blog-mvc/assets/images/article-hero-img-{{ article.article_id }}.png" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="Grand visuel article {{ article.article_id }}">
 			<div class="col-md-8 mx-auto">
-			{# {% apply html_to_markdown %} #}
-				<p class="ap-text">{{ article.content }}</p>
-			{# {% endapply %} #}
+			{% autoescape %}
+				<p class="ap-text">{{ article.content|raw }}</p>
+			{% endautoescape %}
+				
+			
 			</div>
+
+			
 			<div class="col-md-8 pt-3 pb-1 mt-5 mb-2 mx-auto comment-title">
-				<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="public/images/comment-icon.png" alt=""></span>Commentaires</h3>
+				<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Commentaires</h3>
 			</div>
 			<div class="col-md-8 mx-auto comment-list">
 				<ol class="comment-ol">
-					<li>
+					{% for comment in comments %}
+						<li>
 						<div class="comment-body pt-4">
 							<div class="author-date-comment pb-2">
-								<div class="comment-author">Coyotebaba / </div>
-								<div class="comment-date">4 janvier 2021 à 18h26</div>
+							
+								<div class="comment-author">{{ comment.nickname }} &nbsp;</div>
+							
+								<div class="comment-date"> le {{ comment.comment_date|date("d/m/Y à H:i:s") }}</div>
 							</div>
-							<p class="comment-content pb-3">Un article bien intéressant. J'ai appris plein de choses...</p>
+							<p class="comment-content pb-3">{{ comment.content }}</p>
 						</div>
 					</li>
-					<li>
-						<div class="comment-body pt-4">
-							<div class="author-date-comment pb-2">
-								<div class="comment-author">Victor / </div>
-								<div class="comment-date">4 janvier 2021 à 18h43</div>
-							</div>
-							<p class="comment-content pb-3">Effectivement. C'était très instructif !</p>
-						</div>
-					</li>
+					{% endfor %}
 				</ol>
 			</div>
 			<div class="col-md-8 mx-auto commentform-container">
 				<div class="col-md-11 mx-auto pt-4 pb-4">
-					<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="public/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
+					<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
 					<form action="#" method="post" id="commentform" class="commentform">
 						<p class="comment-notes">
 							<span id="email-notes">Votre adresse de messagerie ne sera pas publiée.</span>
@@ -82,6 +83,11 @@
 							</div>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div class="col-8 mx-auto align-link mb-5">
+				<div class="all-articles-link">
+					<a href="/blog-mvc/article/" alt="">Voir tous les articles</a>
 				</div>
 			</div>
 		</div>

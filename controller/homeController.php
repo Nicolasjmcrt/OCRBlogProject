@@ -11,7 +11,7 @@ class homeController extends Controller {
 		$article = new Article();
 		$articles = $article->getLastArticles();
 
-		echo $this->twig->render('home/home.php.twig', ['articles' => $articles]);
+		echo $this->twig->render('home/home.php.twig', ['articles' => $articles, 'pageTitle' => 'Home']);
 	}
 
 }

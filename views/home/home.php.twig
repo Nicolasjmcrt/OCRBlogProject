@@ -1,9 +1,11 @@
-{% extends 'common/template.php.twig' %}
+{% extends '/common/template.php.twig' %}
+
 {% block title %}
 
     <title>CoyoTech Blog | Home</title>
 
 {% endblock %}
+
 {% block head %}
 
 	{{parent()}}
@@ -29,12 +31,12 @@
 		</div>
   		<div class="row media-title pb-5">
    			<div class="col-12 col-xl-5 text-center">
-     				<img class="img-fluid rounded pb-12" src="../assets/images/logo-img.png" alt="Logo CoyoTech Blog">
+     				<img class="img-fluid rounded pb-12" src="/blog-mvc/assets/images/logo-img.png" alt="Logo CoyoTech Blog">
    			</div>
    			<div class="col-12 col-xl-7">
    				<h1 class="h1-title">Les architectes<br />de vos idées !</h1>
    				<div class="link-last-article">
-					<a href="articlePage.php">
+					<a href="/blog-mvc/article/last">
 						<div class="last-article-visuel"></div>
 					<!-- querie needed to call the last article !! -->
 						<p>Lire le dernier article</p>
@@ -57,12 +59,12 @@
 	<!-- ----------------------------------------SECTION (LAST 3 ARTICLES)------------------------------------- -->
 
 		<!-- querie needed to call up the last 3 articles by joining the article and media tables !!-->
-	<div class="container-fluid" style="background-image: url(../assets/images/pattern-shapes.png); background-color:#201d1d;">
+	<div class="container-fluid" style="background-image: url(/blog-mvc/assets/images/pattern-shapes.png); background-color:#201d1d;">
 	    <div class="container container-last-articles pt-5">
 		    <div class="row mb-5 no-gutters">
 			    <div class="col-md-2"></div>
 			    <div class="col-12 col-md-8 last-articles-title">
-				<h3>Articles à la une</h3>
+				<h2>Articles à la une</h2>
 			    </div>
 			    <div class="col-md-2"></div>
 		    </div>
@@ -73,8 +75,8 @@
         
       		<div class="col-12 col-lg-4 mb-5">
         		<div class="card article-card">
-        			<a href="view/{{ article.article_id }}">
-        				<img src="../assets/images/article-img-{{ article.article_id }}.png" class="card-img-top card-media" alt="...">
+        			<a href="/blog-mvc/article/view/{{ article.article_id }}">
+        				<img src="/blog-mvc/assets/images/article-img-{{ article.article_id }}.png" class="card-img-top card-media" alt="...">
           				<div class="card-body article-card-body">
           					<div class="card-title-and-date">
             					<h5 class="card-title article-title">{{ article.title }}</h5>

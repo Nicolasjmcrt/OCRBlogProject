@@ -1,0 +1,78 @@
+{% extends 'common/logRegisterTemplate.php.twig' %}
+
+{% block title %}
+
+    <title>CoyoTech | Inscription</title>
+
+{% endblock %}
+
+{% block head %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+        {{parent()}}
+	
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row form-row">
+        <div class="col-xs-12 col-md-4 text-center">
+            <h2 class="login-title">S'inscrire</h2>
+            <form action="register" method="post" name="" role="" id="">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><img src="/blog-mvc/assets/images/nickname-icon.png" alt=""></span>
+                    </div>
+                    <input type="text" name="nickname" class="form-control" placeholder="Pseudo" >
+              </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><img src="/blog-mvc/assets/images/user-icon.png" alt=""></span>
+                    </div>
+                    <input type="email" name="login" class="form-control" placeholder="E-mail utilisateur" >
+              </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><img src="/blog-mvc/assets/images/key-icon.png" alt=""></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+              </div>
+              <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><img src="/blog-mvc/assets/images/key-icon.png" alt=""></span>
+                    </div>
+                    <input type="password" name="password_confirm" class="form-control" placeholder="Confirmer votre mot de passe">
+              </div>
+                <button type="submit" name="btn" id="btn" class="btn btn-primary btn-login">S'inscrire</button>
+          </form>
+        </div>
+    </div>
+    {% if error %}
+        
+        <div class="col-6 mx-auto alert alert-error text-center" role="alert">
+            {{ error }}
+        </div>
+        
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+    {{parent()}}
+    
+{% endblock %}

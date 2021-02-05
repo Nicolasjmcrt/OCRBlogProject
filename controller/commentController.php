@@ -1,23 +1,27 @@
 <?php
 
 require_once ('model/Comment.php');
+require_once ('model/Article.php');
 require_once ('controller/Controller.php');
 
 class commentController extends Controller {
 
-	public function invalidCommentsList() {
+	public function list() {
+
+		
+
 		$comment = new Comment();
 		$comments = $comment->getInvalidComments();
+		
+		
+		$article = new Article();
+		$articles = $article->getArticleFromComment();
 
-		require('view/listInvalidComments.php');
+		
 
-	}
+	
+		echo $this->twig->render('comment/invalidComments.php.twig', ['comments' => $comments, 'articles' => $articles, 'pageTitle' => 'Comments']);
 
-	public function articleCommentList($articleId) {
-		$comment = new Comment();
-		$comments = $comment->getArticleComments($articleId);
-
-		require('view/listComments.php');
 	}
 
 	public function view($commentId) {
@@ -28,9 +32,22 @@ class commentController extends Controller {
 	}
 
 
+	public function validate($commentId) {
+		$comment = new Comment();
+		$comment->validate($commentId);
+
+		header('Location: /blog-mvc/Comment');
+	}
+
+
 	public function delete($commentId) {
 		$comment = new Comment();
 		$comment->delete($commentId);
+
+		header('Location: /blog-mvc/Comment');
 	}
 
 }
+
+
+

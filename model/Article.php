@@ -47,11 +47,11 @@ class Article extends Connect {
 		return $result;
 	}
 
-	public function getArticle($articleId) {
+	public function getArticle($article) {
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT * FROM article WHERE article_id = ?');
-		$req->execute(array($articleId));
+		$req->execute(array($article));
 		$article = $req->fetch(PDO::FETCH_ASSOC);
 
 		return $article;
@@ -66,6 +66,29 @@ class Article extends Connect {
 
 		return $article;
 	}
+
+	
+
+	public function addArticle($articleId) {
+
+		// var_dump($articleId);
+		// exit();
+		$db = $this->dbConnect();
+		$req = $db->prepare('INSERT INTO article SET title=?, intro=?, catchphrase=?, content=?, update_date = ?, publication=?, user_id=?');
+
+		$req->execute(array($articleId['title'], $articleId['intro'], $articleId['catchphrase'], $articleId['content'], date('Y-m-d H:i:s'), $articleId['publication'], $articleId['userId'])); 
+
+	}
+
+
+
+	public function editArticle($article) {
+
+		$db = $this->dbConnect();
+		$req = $db->prepare('UPDATE article SET title=?, intro=?, catchphrase=?, content=?, update_date=?, publication=?, user_id=? WHERE user_id=?');
+		$req->execute(array($article['title'], $article['intro'], $article['catchphrase'], $article['content'], date('Y-m-d H:i:s'), $article['publication'], $article['userId']));
+	}
+
 
 	public function delete($articleId) {
 

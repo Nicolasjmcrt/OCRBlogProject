@@ -916,6 +916,32 @@ strong {
 	font-weight: 600;
 	font-size: 30px;
 }
+
+
+
+/*-------------------CONFIRM-PAGE----------------*/
+
+
+.login-link a {
+	text-decoration: none!important;
+	color: #fff;
+	font-size: 1rem;
+	background-color: #11b5e4;
+	border: solid 1px #11b5e4;
+	padding: 8px 15px;
+	border-radius: .25rem;
+	font-weight: 400;
+	vertical-align: middle;
+}
+
+.login-link {
+	transition: 300ms;
+}
+
+.login-link:hover {
+	transform: translate(0, -5px);
+	color: #fff;
+}
 /*-------------------FOOTER-ADMIN-AND-LOG----------------*/
 
 .bg-footer {
@@ -974,6 +1000,10 @@ strong {
 	vertical-align: middle!important;
 }
 
+.text-nickname {
+	color: #007bff!important;
+	font-weight: 600!important;
+}
 
 /*-------------------USER VIEW----------------*/
 

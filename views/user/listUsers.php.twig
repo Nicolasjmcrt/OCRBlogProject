@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="col" class="text-center">Nom</th>
                             <th scope="col" class="text-center">Prénom</th>
-                            <th scope="col" class="text-center">Login</th>
+                            <th scope="col" class="text-center">Pseudo</th>
                             <th scope="col" class="text-center">Compte actif</th>
                             <th scope="col" class="text-center">Rôle</th>
                             <th scope="col" class="text-center">Modifier</th>
@@ -45,7 +45,7 @@
                         <tr>
                             <td class="text-center"><strong>{{ user.last_name }}</strong></td>
                             <td class="text-center"><strong>{{ user.first_name }}</strong></td>
-                            <td class="text-center">{{ user.login }}</td>
+                            <td class="text-center text-primary text-nickname">{{ user.nickname }}</td>
                             <td class="text-center"><span class="badge {{ user.active_account ?'badge-success':'badge-danger' }}">{{ user.active_account ?'oui':'non' }}</span>
                             </td>
                             <td class="text-center">
@@ -62,7 +62,7 @@
                                 <a href="/blog-mvc/user/edit/{{ user.user_id }}"><img src="/blog-mvc/assets/images/pen.png" style="width: 25px;" alt=""></a>
                             </td>
                             <td class="text-center">
-                                <button type="button" class="trash-btn" data-toggle="modal" data-target="#myModal" rel="{{ user.user_id }}" title="{{ user.first_name }} {{ user.last_name }}"><img src="/blog-mvc/assets/images/trash.png" style="width: 23px;" alt="">
+                                <button type="button" class="trash-btn" data-toggle="modal" data-target="#myModal" rel="{{ user.user_id }}" title="{{ user.nickname }}"><img src="/blog-mvc/assets/images/trash.png" style="width: 23px;" alt="">
                                 </button>
                             </td>
                         </tr>
@@ -94,7 +94,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
           <!--ajout de la classe btn-url-supp sur le lien du bouton-->
-          <a href="delete/{{ user.user_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer l'utilisateur</a>
+          <a href="/user/delete/{{ user.user_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer l'utilisateur</a>
         </div><!-- /.modal-footer -->
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

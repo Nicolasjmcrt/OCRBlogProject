@@ -32,7 +32,7 @@ class Article extends Connect {
 
 	public function getLastId() {
 		$db = $this->dbConnect();
-		$req = $db->query('SELECT article_id FROM article ORDER BY update_date DESC LIMIT 0,1');
+		$req = $db->query('SELECT article_id FROM article WHERE publication = 1 ORDER BY update_date DESC LIMIT 0,1');
 		$result = $req->fetch(PDO::FETCH_ASSOC);
 
 		return $result['article_id'];
@@ -41,17 +41,17 @@ class Article extends Connect {
 
 	public function getLastArticles() {
 		$db = $this->dbConnect();
-		$req = $db->query('SELECT * FROM article ORDER BY update_date DESC LIMIT 0,3');
+		$req = $db->query('SELECT * FROM article WHERE publication = 1 ORDER BY update_date DESC LIMIT 0,3');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;
 	}
 
-	public function getArticle($articleId) {
+	public function getArticle($article_id) {
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT * FROM article WHERE article_id = ?');
-		$req->execute(array($articleId));
+		$req->execute(array($article_id));
 		$article = $req->fetch(PDO::FETCH_ASSOC);
 
 		return $article;
@@ -66,6 +66,29 @@ class Article extends Connect {
 
 		return $article;
 	}
+
+	
+
+	public function addArticle($articleId) {
+
+		// var_dump($articleId);
+		// exit();
+		$db = $this->dbConnect();
+		$req = $db->prepare('INSERT INTO article SET title=?, intro=?, catchphrase=?, content=?, update_date = ?, publication=?, user_id=?');
+
+		$req->execute(array($articleId['title'], $articleId['intro'], $articleId['catchphrase'], $articleId['content'], date('Y-m-d H:i:s'), $articleId['publication'], $articleId['userId'])); 
+
+	}
+
+
+
+	public function editArticle($article_id) {
+
+		$db = $this->dbConnect();
+		$req = $db->prepare('UPDATE article SET title=?, intro=?, catchphrase=?, content=?, update_date=?, publication=?, user_id=? WHERE article_id=?');
+		$req->execute(array($article_id['title'], $article_id['intro'], $article_id['catchphrase'], $article_id['content'], date('Y-m-d H:i:s'), $article_id['publication'], $article_id['userId'], $article_id['articleId']));
+	}
+
 
 	public function delete($articleId) {
 

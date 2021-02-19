@@ -36,7 +36,7 @@
         				<a class="nav-link" href="/blog-mvc/article/">Articles</a>
       				</li>
       				<li class="nav-item {% if pageTitle == 'Contact' %} : active{% endif %}">
-        				<a class="nav-link" href="#">Contact</a>
+        				<a class="nav-link" href="/blog-mvc/#contact">Contact</a>
       				</li>
       				<li class="nav-item {% if pageTitle == 'CV' %} : active{% endif %}">
        					<a class="nav-link" href="#">Mon C.V.</a>
@@ -47,10 +47,19 @@
         				<a class="nav-link dropdown-toggle account-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mon compte
         				</a>
-        				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						{% if session.role is empty %}
+						
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           					<a class="dropdown-item account-links" href="/blog-mvc/User/register/">S'inscrire</a>
           					<a class="dropdown-item account-links" href="/blog-mvc/User/login/">Se connecter</a>
         				</div>
+						{% else %}
+						
+							<a class="dropdown-item account-links" href="/blog-mvc/User/logout/">Se déconnecter</a>
+						
+						{% endif %}
+						
+        				
       				</li>
           		</ul>
   			</div>

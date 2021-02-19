@@ -1,0 +1,58 @@
+{% extends 'common/logRegisterTemplate.php.twig' %}
+
+{% block title %}
+
+    <title>CoyoTech | Confirmation Inscription</title>
+
+{% endblock %}
+
+{% block head %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+        {{parent()}}
+	
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-10 col-lg-8 mt-5 mx-auto">
+            {% if error %}
+        
+                <div class="col-10 col-lg-6 mx-auto alert alert-error text-center" role="alert">{{ error }}</div>
+        
+            {% endif %}
+            {% if success %}
+        
+                <div class="col-10 col-lg-6 mx-auto alert alert-success text-center" role="alert">{{ success }}</div>
+        
+            {% endif %}
+        </div>
+    </div>   
+    <div class="row mx-auto">
+        <div class="col-8 text-center mx-auto mt-3 login-link">
+            <a href="/blog-mvc/user/login">Me connecter</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+    {{parent()}}
+    
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'common/backTemplate.php.twig' %}
+
+{% block title %}
+
+    <title>CoyoTech | Ajouter Utilisateur</title>
+
+{% endblock %}
+
+{% block head %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block header %}
+
+        {{parent()}}
+	
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container mb-5 mt-5">
+    <div class="row pb-5">
+        <div class="col pb-5">
+          <h1 class="text-light pt-3 pb-3">Ajouter un utilisateur</h1>
+            <form method="post" class="pt-3 pb-3" style="background-color: rgba(255, 255, 255, 0.9); padding-left: 10px; padding-right: 10px; border-radius: 10px;">
+                <div class="form-group">
+                    <label for="lastname">Nom :</label>
+                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Nom de l'utilisateur..."  value="{{ user.last_name }}">
+                 </div>
+                <div class="form-group">
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Prénom de l'utilisateur..." value="{{ user.first_name }}">
+                 </div>
+                 <div class="form-group">
+                    <label for="nickname">Pseudo :</label>
+                    <input type="text" class="form-control" name="nickname" id="nickname" placeholder="Pseudo de l'utilisateur..." autofocus value="{{ user.nickname }}">
+                 </div>
+                <div class="form-group">
+                    <label for="login">Login :</label>
+                    <input type="email" class="form-control" name="login" id="login" placeholder="Login de l'utilisateur..." required value="{{ user.login }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email de l'utilisateur..." value="{{ user.email }}">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe de l'utilisateur...">
+                </div>
+                <div class="form-group">
+                    <p>Rôle : <br />
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="role" id="administrator" value="Administrator" {% if user.role == 'Administrator' %} checked {% endif %} >
+                            <label class="form-check-label" for="administrator">Administrateur</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="role" id="author" value="Author" {% if user.role == 'Author' %} checked {% endif %}>
+                            <label class="form-check-label" for="author">Auteur</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="role" id="visitor" value="Visitor" {% if user.role == 'Visitor' %} checked {% endif %}>
+                            <label class="form-check-label" for="visitor">Visiteur enregistré</label>
+                        </div>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p>Compte actif : <br />
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activeaccount" id="1" value="1" {% if user.active_account == 1 %} checked {% endif %}>
+                            <label class="form-check-label" for="1">Oui</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activeaccount" id="0" value="0" {% if user.active_account == 0 %} checked {% endif %}>
+                            <label class="form-check-label" for="0">Non</label>
+                        </div>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="userId" value="{{ user.user_id }}">
+                    <button type="submit" class="btn btn-save" name="valid-form">Enregistrer</button>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a href="/blog-mvc/User/" type="button" class="btn" title="Retour à la liste des utilisateurs"><img class="backto-icon" src="/blog-mvc/assets/images/backto-icon.png" alt="Icone retour"></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+    {{parent()}}
+
+{% endblock %}
+
+{% block scripts %}
+
+    {{parent()}}
+    
+{% endblock %}

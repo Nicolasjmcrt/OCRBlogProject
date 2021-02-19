@@ -47,14 +47,22 @@ class articleController extends Controller {
 
 		$user = new User();
 		$user = $user->getAuthor($articleId);
+<<<<<<< HEAD
 		$media = new Media();
+=======
+		// $media = new Media();
+>>>>>>> master
 
 		if(!empty($_POST)) {
 			// var_dump($_POST);
 			// var_dump($_FILES);
 			// exit();
 			$article->addArticle($_POST);
+<<<<<<< HEAD
 			$media->addMedia($_FILES);
+=======
+			// $media->addMedia($_FILES);
+>>>>>>> master
 
 			header('Location: /blog-mvc/Article/admin');
 		}
@@ -65,6 +73,7 @@ class articleController extends Controller {
 
 
 
+<<<<<<< HEAD
 	public function edit($article_id) {
 
 		$articleModel = new Article();
@@ -77,6 +86,20 @@ class articleController extends Controller {
 			// var_dump($_POST);
 			// exit();
 			$articleModel->editArticle($_POST);
+=======
+	public function edit($article) {
+
+		$article = new Article();
+		$article = $article->getArticle($article);
+
+		$user = new User();
+		$user = $user->getAuthor($article);
+
+		$article = new Article();
+
+		if(!empty($_POST)) {
+			$article->editArticle($_POST);
+>>>>>>> master
 			header('Location: /blog-mvc/Article/admin');
 		}
 

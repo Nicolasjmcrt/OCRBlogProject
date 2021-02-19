@@ -17,6 +17,7 @@ class userController extends Controller
 			if($user->check($_POST['login'], $_POST['password'])) {
 				
 				$success = 'Vous êtes bien connecté !';
+<<<<<<< HEAD
 				
 				if($_SESSION['role'] == 'Administrator' || $_SESSION['role'] == 'Author') {
 					
@@ -24,6 +25,9 @@ class userController extends Controller
 					
 				}
 				$this->redirect('/blog-mvc');
+=======
+				header('Location: /blog-mvc');
+>>>>>>> master
 				
 			}
 			$error = 'Il y a une erreur dans le login ou le mot de passe !

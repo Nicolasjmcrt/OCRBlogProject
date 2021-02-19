@@ -40,7 +40,11 @@
                     </div>
                     <div class="form-group">
                         <label for="content">Contenu :</label>
+<<<<<<< HEAD
                         <textarea class="form-control" name="content" id="content" autocomplete="on">{{ article.content }}</textarea>
+=======
+                        <textarea class="form-control" name="content" id="content" value="{{ article.content }}" autocomplete="on"></textarea>
+>>>>>>> master
                         <script>
                             CKEDITOR.replace( 'content' );
                         </script>

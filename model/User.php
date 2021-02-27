@@ -90,8 +90,7 @@ class User extends Connect {
 
 
 		mail($user['email'], 'Veuillez confirmer votre adresse e-mail', "Bonjour, Cliquez sur le lien ci-desous pour confirmer votre adresse e-mail. Cette manipulation permet de vérifier que vous en êtes le propriétaire.\n\nhttp://localhost:8888/blog-mvc/user/confirm/?id=$user_id&token=$token");
-<<<<<<< HEAD
-=======
+
 	}
 
 
@@ -113,35 +112,11 @@ class User extends Connect {
 		$req = $db->prepare('SELECT user_id FROM user WHERE login = ?');
 		$req->execute([$_POST['login']]);
 		return $req->fetch();
->>>>>>> master
+
 	}
 
 
 
-<<<<<<< HEAD
-	public function checkNickname($user) {
-
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT user_id FROM user WHERE nickname = ?');
-		$req->execute([$_POST['nickname']]);
-		return $req->fetch();
-	}
-
-
-
-
-	public function checkLogin($user) {
-
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT user_id FROM user WHERE login = ?');
-		$req->execute([$_POST['login']]);
-		return $req->fetch();
-	}
-
-
-
-=======
->>>>>>> master
 	public function checkToken($token) {
 
 		$date = new DateTime();
@@ -159,7 +134,7 @@ class User extends Connect {
 
 			$req = $db->prepare('UPDATE user SET active_account = 1, token = NULL WHERE token = ?');
 			$req->execute(array($token));
-<<<<<<< HEAD
+
 		return true;
 		}
 
@@ -179,30 +154,6 @@ class User extends Connect {
 	}
 
 
-=======
-			// Quand compte confirmé, mettre à NULL champ token et champ active_account
-		return true;
-		}
-
-		
-		
-	}
-
-
-	public function addUser($user) {
-
-		$token = bin2hex(random_bytes(78));
-
-
-		$db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO user SET first_name=?, last_name=?, nickname=?, login=?, email=?, password=?, role=?, active_account=?');
-		$password = password_hash($user['password'], PASSWORD_BCRYPT);
-
-		$req->execute(array($user['firstname'], $user['lastname'], $user['nickname'], $user['login'], $user['email'], $password, $user['role'], $user['activeaccount']));
-	}
-
-
->>>>>>> master
 
 	public function editUser($user) {
 		

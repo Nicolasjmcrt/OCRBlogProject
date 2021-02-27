@@ -8,21 +8,26 @@ class commentController extends Controller {
 
 	public function list() {
 
-		
-
 		$comment = new Comment();
 		$comments = $comment->getInvalidComments();
-		
-		
+				
 		$article = new Article();
 		$articles = $article->getArticleFromComment();
 
+		if ($_SESSION['role'] == 'Author') {
+
+			$this->redirect('/blog-mvc/article/admin');
+		} elseif ($_SESSION['role'] != 'Administrator') {
+
+			$this->redirect('/blog-mvc');
+		}
+
 		
 
-	
 		echo $this->twig->render('comment/invalidComments.php.twig', ['comments' => $comments, 'articles' => $articles, 'pageTitle' => 'Comments']);
 
 	}
+
 
 	public function view($commentId) {
 		$comment = new Comment();
@@ -36,7 +41,11 @@ class commentController extends Controller {
 		$comment = new Comment();
 		$comment->validate($commentId);
 
-		header('Location: /blog-mvc/Comment');
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+
+		$this->redirect('/blog-mvc/Comment');
 	}
 
 
@@ -44,7 +53,11 @@ class commentController extends Controller {
 		$comment = new Comment();
 		$comment->delete($commentId);
 
-		header('Location: /blog-mvc/Comment');
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+
+		$this->redirect('/blog-mvc/Comment');
 	}
 
 }

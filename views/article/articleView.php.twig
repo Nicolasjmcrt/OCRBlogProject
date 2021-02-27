@@ -58,6 +58,14 @@
 					{% endfor %}
 				</ol>
 			</div>
+			{% if session.role is empty %}
+
+			<div class="col-8 mx-auto mt-5 mb-5 to-login">
+				<a href="/blog-mvc/user/login" class="comment-reply-title pt-2 pb-2"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Publier un commentaire</a>
+			</div>
+
+			{% else %}
+				
 			<div class="col-md-8 mx-auto commentform-container">
 				<div class="col-md-11 mx-auto pt-4 pb-4">
 					<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
@@ -84,6 +92,7 @@
 						</div>
 					</form>
 				</div>
+				{% endif %}
 			</div>
 			<div class="col-8 mx-auto align-link mb-5">
 				<div class="all-articles-link">

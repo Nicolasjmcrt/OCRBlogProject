@@ -47,19 +47,11 @@ class Article extends Connect {
 		return $result;
 	}
 
-<<<<<<< HEAD
 	public function getArticle($article_id) {
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT * FROM article WHERE article_id = ?');
 		$req->execute(array($article_id));
-=======
-	public function getArticle($article) {
-
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT * FROM article WHERE article_id = ?');
-		$req->execute(array($article));
->>>>>>> master
 		$article = $req->fetch(PDO::FETCH_ASSOC);
 
 		return $article;
@@ -86,23 +78,19 @@ class Article extends Connect {
 
 		$req->execute(array($articleId['title'], $articleId['intro'], $articleId['catchphrase'], $articleId['content'], date('Y-m-d H:i:s'), $articleId['publication'], $articleId['userId'])); 
 
+		return $this->getArticle($db->lastInsertId());
+
 	}
 
 
 
-<<<<<<< HEAD
 	public function editArticle($article_id) {
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('UPDATE article SET title=?, intro=?, catchphrase=?, content=?, update_date=?, publication=?, user_id=? WHERE article_id=?');
 		$req->execute(array($article_id['title'], $article_id['intro'], $article_id['catchphrase'], $article_id['content'], date('Y-m-d H:i:s'), $article_id['publication'], $article_id['userId'], $article_id['articleId']));
-=======
-	public function editArticle($article) {
 
-		$db = $this->dbConnect();
-		$req = $db->prepare('UPDATE article SET title=?, intro=?, catchphrase=?, content=?, update_date=?, publication=?, user_id=? WHERE user_id=?');
-		$req->execute(array($article['title'], $article['intro'], $article['catchphrase'], $article['content'], date('Y-m-d H:i:s'), $article['publication'], $article['userId']));
->>>>>>> master
+
 	}
 
 

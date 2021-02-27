@@ -1,12 +1,12 @@
 page d'accueil  /  OK 
 
-Liste des articles  /article   OK
+Liste des articles  /Article   OK
 
-Détail d'un article     /article/x   OK 
+Détail d'un article     /Article/x   OK 
 
-Page de Login   /Login vue OK mais faire Controller
+Page de Login   User/login OK
 
-Page d'inscription  /Register vue OK mais faire Controller
+Page d'inscription  User/register OK
 
 
 Page C.V.   /C.V.
@@ -17,22 +17,22 @@ Back
 
 
 
-Page Admin  /Admin  OK mais non reliée
+Page Admin  Article/Admin  OK 
 
-Page de création d'article  /article/add
+Page de création d'article  /Article/add OK reste à faire média
 
-Page de modification d'article  /article/edit/x
+Page de modification d'article  /Article/edit/x OK reste à faire média
 
-Suppression d'article   /article/delete/x
-
-
-Page de création d'un utilisateur  /user/add 
-
-Page de modification d'un utilisateur  /user/edit/x  OK 
-
-Suppression d'un utilisateur   /user/delete/x
+Suppression d'article   /Article/delete/x OK 
 
 
-Liste des commentaires  /comment OK mais faire Controller
+Page de création d'un utilisateur  /User/add OK
 
-Validation commentaires     /comment/valide/x
+Page de modification d'un utilisateur  /User/edit/x  OK 
+
+Suppression d'un utilisateur   /User/delete/x OK
+
+
+Liste des commentaires  /comment OK 
+
+Validation commentaires     /comment/valide/x OK

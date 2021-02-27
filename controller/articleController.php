@@ -19,6 +19,8 @@ class articleController extends Controller {
 		$article = new Article();
 		$articles = $article->getAllArticles();
 
+
+
 		echo $this->twig->render('article/backendArticlesList.php.twig', ['articles' => $articles, 'pageTitle' => 'BackArticles']);
 	}
 
@@ -47,24 +49,24 @@ class articleController extends Controller {
 
 		$user = new User();
 		$user = $user->getAuthor($articleId);
-<<<<<<< HEAD
 		$media = new Media();
-=======
-		// $media = new Media();
->>>>>>> master
+
+		if ($_SESSION['role'] != 'Administrator' && $_SESSION['role'] != 'Author') {
+			$this->redirect('/blog-mvc');
+		}
+
 
 		if(!empty($_POST)) {
 			// var_dump($_POST);
 			// var_dump($_FILES);
+			// print_r($_FILES);
 			// exit();
-			$article->addArticle($_POST);
-<<<<<<< HEAD
-			$media->addMedia($_FILES);
-=======
-			// $media->addMedia($_FILES);
->>>>>>> master
+			$newArticle = $article->addArticle($_POST);
+		
 
-			header('Location: /blog-mvc/Article/admin');
+			$media->addMedia($_FILES, $_POST['caption'], $newArticle);
+
+			$this->redirect('/blog-mvc/Article/admin');
 		}
 
 	
@@ -73,44 +75,42 @@ class articleController extends Controller {
 
 
 
-<<<<<<< HEAD
 	public function edit($article_id) {
 
+		if ($_SESSION['role'] != 'Administrator' && $_SESSION['role'] != 'Author') {
+			$this->redirect('/blog-mvc');
+		}
+		
 		$articleModel = new Article();
 		$article = $articleModel->getArticle($article_id);
-
+		$mediaModel = new Media();
+		$media = $mediaModel->getMedia($article_id);
 		$user = new User();
 		$user = $user->getAuthor($article_id);
+
+		
 
 		if(!empty($_POST)) {
 			// var_dump($_POST);
 			// exit();
 			$articleModel->editArticle($_POST);
-=======
-	public function edit($article) {
-
-		$article = new Article();
-		$article = $article->getArticle($article);
-
-		$user = new User();
-		$user = $user->getAuthor($article);
-
-		$article = new Article();
-
-		if(!empty($_POST)) {
-			$article->editArticle($_POST);
->>>>>>> master
-			header('Location: /blog-mvc/Article/admin');
+			$this->redirect('/blog-mvc/Article/admin');
 		}
 
-		echo $this->twig->render('article/editArticle.php.twig', ['user' => $user, 'article' => $article, 'pageTitle' => 'BackArticles']);
+		echo $this->twig->render('article/editArticle.php.twig', ['user' => $user, 'article' => $article, 'media' => $media, 'pageTitle' => 'BackArticles']);
 	}
 
 
 	public function delete($articleId) {
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+
 		$article = new Article();
 		$article->delete($articleId);
 
-		header('Location: /blog-mvc/Article/admin');
+		
+
+		$this->redirect('/blog-mvc/Article/admin');
 	}
 }

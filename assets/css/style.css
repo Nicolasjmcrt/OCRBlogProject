@@ -27,6 +27,10 @@ strong {
 	color: #fff;
 	background-color: #4caf50;
 }
+
+
+
+
 /*---------------------------------------HEADER------------------------------------------------*/
 
 
@@ -111,8 +115,21 @@ strong {
 	color: #fff!important;
 }
 
+.logout-link {
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: 300;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+	color: #11b5e4!important;
+	transition: 200ms;
+}
 
-
+.logout-link:hover {
+	font-weight: 500;
+	color: #11b5e4!important;
+	text-decoration: none;
+}
 
 
 
@@ -760,6 +777,16 @@ strong {
 	transform: translate(0, -5px);
 }
 
+.to-login {
+	border-top: solid 1px #eceef2;
+    border-bottom: solid 1px #eceef2;
+}
+
+.to-login:hover a{
+	color: #11b5e4;
+	text-decoration: none;
+}
+
 .align-link {
 	display: flex;
 	justify-content: center;
@@ -978,6 +1005,15 @@ strong {
 
 .bg-footer span {
 	font-weight: 500;
+}
+
+.site-link {
+	text-transform: uppercase;
+}
+
+.site-link:hover {
+	text-decoration: none;
+	font-weight: 600;
 }
 
 

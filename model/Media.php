@@ -5,14 +5,29 @@ require_once('model/Connect.php');
 class Media extends Connect {
 
 
-    public function addMedia($files) {
+    public function addMedia($files, $caption, $article) {
 
-       
-            var_dump($files);
             $ext = new SplFileInfo($files['media']['name']);
-            var_dump($ext->getExtension());
-            exit();
+            $filename = "media/article/".uniqid().".".$ext->getExtension();
+            rename($files['media']['tmp_name'], $filename);
+           
+            $db = $this->dbConnect();
+		    $req = $db->prepare('INSERT INTO media SET caption=?, file_name=?, article_id=?');
 
+		    $req->execute(array($caption, $filename, $article['article_id'])); 
+
+
+}
+
+
+public function getMedia($article_id) {
+
+    $db = $this->dbConnect();
+    $req = $db->prepare('SELECT * FROM media WHERE article_id = ?');
+    $req->execute(array($article_id));
+    $media = $req->fetch(PDO::FETCH_ASSOC);
+
+    return $media;
 }
 
 }

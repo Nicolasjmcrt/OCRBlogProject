@@ -42,26 +42,26 @@
        					<a class="nav-link" href="#">Mon C.V.</a>
       				</li>
     			</ul>
+				{% if session.role is empty %}
           		<ul class="account-nav">
             		<li class="nav-item dropdown">
         				<a class="nav-link dropdown-toggle account-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mon compte
         				</a>
-						{% if session.role is empty %}
+						
 						
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           					<a class="dropdown-item account-links" href="/blog-mvc/User/register/">S'inscrire</a>
           					<a class="dropdown-item account-links" href="/blog-mvc/User/login/">Se connecter</a>
         				</div>
-						{% else %}
-						
-							<a class="dropdown-item account-links" href="/blog-mvc/User/logout/">Se déconnecter</a>
-						
-						{% endif %}
-						
-        				
       				</li>
           		</ul>
+				{% else %}
+
+					<p>{{ user.nickname }}</p>	
+					<a class="logout-link" href="/blog-mvc/User/logout/">Se déconnecter</a>
+						
+				{% endif %}
   			</div>
 		</nav>
 	</header>
@@ -87,12 +87,19 @@
 
 				<!-- Link to modify : admin/index.php -->
 
-				<a href="/blog-mvc/user/login">Administration du site</a>
+					
+				{% if session.role == 'Administrator' %}
+					<a href="/blog-mvc/article/admin">Administration du site</a>
+				{% elseif session.role == 'Author' %}
+					<a href="/blog-mvc/article/admin">Administration du site</a>
+				{% else %}
+					<a href="/blog-mvc/user/login">Administration du site</a>
+				{% endif %}
 			</div>
 		</div>
 		<div class="row footer-bottom-part">
 			<div class="col-12 text-center">
-				<p>Copyright © 2021 CoyoTech</p>
+				<p>Copyright © {{ "now"|date("Y") }} CoyoTech</p>
 			</div>
 		</div>
 	</div>

@@ -54,7 +54,7 @@ session_start();
     			</ul>
           		<ul class="logout-ul">
             		<li>
-              		<a href="login.php"><img src="/blog-mvc/assets/images/log-out-icon.png" class="logout-icon" alt="Log-out icon" title="Se déconnecter"></a>
+              		<a href="/blog-mvc/user/logout"><img src="/blog-mvc/assets/images/log-out-icon.png" class="logout-icon" alt="Log-out icon" title="Se déconnecter"></a>
             		</li>
             		<li>
               		<p class="connected-user" >Connecté(e) : {{ user.last_name }} {{ user.first_name }}</p>
@@ -73,7 +73,7 @@ session_start();
     <footer class="footer mt-auto py-3 bg-footer">
 		<div class="container footer-container">
   			<p>Coyo<span>Tech</span></p>
-  			<a href="/blog-mvc/">Retour sur le site</a>
+  			<a class="site-link" href="/blog-mvc/">Retour sur le site</a>
 		</div>
 	</footer>
 

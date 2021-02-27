@@ -17,7 +17,7 @@ class userController extends Controller
 			if($user->check($_POST['login'], $_POST['password'])) {
 				
 				$success = 'Vous êtes bien connecté !';
-<<<<<<< HEAD
+
 				
 				if($_SESSION['role'] == 'Administrator' || $_SESSION['role'] == 'Author') {
 					
@@ -25,9 +25,6 @@ class userController extends Controller
 					
 				}
 				$this->redirect('/blog-mvc');
-=======
-				header('Location: /blog-mvc');
->>>>>>> master
 				
 			}
 			$error = 'Il y a une erreur dans le login ou le mot de passe !
@@ -82,7 +79,7 @@ class userController extends Controller
 
 				$user->createVisitor($_POST);
 
-				header('Location: /blog-mvc/User/login');
+				$this->redirect('/blog-mvc/User/login');
 			}
 		}
 
@@ -116,6 +113,10 @@ class userController extends Controller
 		$user = new User();
 		$users = $user->getUsers();
 
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+
 		echo $this->twig->render('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users']);
 	}
 	
@@ -124,9 +125,13 @@ class userController extends Controller
 	public function add($user) {
 		$user = new User();
 
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+
 		if(!empty($_POST)) {
 			$user->addUser($_POST);
-			header('Location: /blog-mvc/User');
+			$this->redirect('/blog-mvc/User');
 		}
 		
 		echo $this->twig->render('user/addUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
@@ -135,22 +140,36 @@ class userController extends Controller
 
 
 	public function edit($userId) {
+
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+
 		$User = new User();
 		$user = $User->getUser($userId);
 
+		
+
 		if(!empty($_POST)) {
 			$User->editUser($_POST);
-			header('Location: /blog-mvc/User');
+			$this->redirect('/blog-mvc/User');
 		}
 		echo $this->twig->render('user/editUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
 		
 	}
 
 	public function delete($userId) {
+
+		if ($_SESSION['role'] != 'Administrator') {
+			$this->redirect('/blog-mvc');
+		}
+		
 		$User = new User();
 		$User->delete($userId);
 
-		header('Location: /blog-mvc/User');
+		
+
+		$this->redirect('/blog-mvc/User');
 	}
 }
 

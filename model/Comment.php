@@ -32,6 +32,7 @@ class Comment extends Connect {
 		$req = $db->prepare('UPDATE comment SET validation=1 WHERE comment_id = ?');
 		$req->execute(array($commentId));
 	}
+	
 
 	public function delete($commentId) {
 

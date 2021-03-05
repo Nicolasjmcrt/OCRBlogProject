@@ -58,8 +58,10 @@
           		</ul>
 				{% else %}
 
-					<p>{{ user.nickname }}</p>	
-					<a class="logout-link" href="/blog-mvc/User/logout/">Se déconnecter</a>
+					<div class="logout-div col-12 col-md-3">
+						<p class="nickname"><span class="nickname-icon"><img src="/blog-mvc/assets/images/blue-user-icon.png" alt=""></span>{{ session.nickname }}</p>	
+						<a class="logout-link" href="/blog-mvc/User/logout/">Se déconnecter</a>
+					</div>
 						
 				{% endif %}
   			</div>

@@ -44,7 +44,7 @@
                         <tr>
                             <td class="text-center text-dark td-align">{{ comment.nickname }}</td>
                             <td class="text-center text-info td-align">{{ comment.title }}</td>
-                            <td class="text-center td-align">{{ comment.content }}</td>
+                            <td class="td-align">{{ comment.content }}</td>
                             <td class="text-center td-align">
                             <!--Renvoi vers la page modifier-->
                                 <a href="/blog-mvc/comment/validate/{{ comment.comment_id }}"><img src="/blog-mvc/assets/images/check-icon.png" style="width: 25px;" alt=""></a>
@@ -115,7 +115,7 @@
         /*titre à afficher en "strong" à l'apparition du modal*/
         $('.titre-user').html('<strong>'+titre+'</strong>');
         /*définition de l'url a afficher*/
-        url='delete/'+valsupp;
+        url='/blog-mvc/Comment/delete/'+valsupp;
         /*quand suppression confirmée, retour à l'url prédéfinie*/
         $('.btn-url-supp').attr('href',url);
       });

@@ -68,6 +68,11 @@ class User extends Connect {
 		if($check) {
 
 			$_SESSION['role'] = $user['role'];
+			$_SESSION['user_id'] = $user['user_id'];
+			$_SESSION['nickname'] = $user['nickname'];
+			$_SESSION['first_name'] = $user['first_name'];
+			$_SESSION['last_name'] = $user['last_name'];
+
 
 			return true;
 		}
@@ -144,7 +149,6 @@ class User extends Connect {
 	public function addUser($user) {
 
 		$token = bin2hex(random_bytes(78));
-
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('INSERT INTO user SET first_name=?, last_name=?, nickname=?, login=?, email=?, password=?, role=?, active_account=?');

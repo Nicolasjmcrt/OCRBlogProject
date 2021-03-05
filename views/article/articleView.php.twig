@@ -28,7 +28,7 @@
 			<h1 class="col-md-8 mx-auto text-center ap-intro">{{ article.intro}}</h1>
 			<p class="col-md-8 mx-auto text-center ap-author-date pb-5"><span>{{ article.first_name }} {{ article.last_name }}</span> / Mis à jour le {{ article.update_date|date("d/m/Y") }}</p>
 			<h2 class="col-md-8 mx-auto ap-2nd-intro pb-5">{{ article.catchphrase }}</h2>
-			<img src="/blog-mvc/assets/images/article-hero-img-{{ article.article_id }}.png" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="Grand visuel article {{ article.article_id }}">
+			<img src="/blog-mvc/{{ media.file_name }}" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="Grand visuel article {{ article.article_id }}">
 			<div class="col-md-8 mx-auto">
 			{% autoescape %}
 				<p class="ap-text">{{ article.content|raw }}</p>
@@ -60,7 +60,7 @@
 			</div>
 			{% if session.role is empty %}
 
-			<div class="col-8 mx-auto mt-5 mb-5 to-login">
+			<div class="col-8 mx-auto mt-5 mb-5 pt-2 pb-2 to-login">
 				<a href="/blog-mvc/user/login" class="comment-reply-title pt-2 pb-2"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Publier un commentaire</a>
 			</div>
 
@@ -69,24 +69,21 @@
 			<div class="col-md-8 mx-auto commentform-container">
 				<div class="col-md-11 mx-auto pt-4 pb-4">
 					<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
-					<form action="#" method="post" id="commentform" class="commentform">
+					<form action="" method="post" class="commentform">
 						<p class="comment-notes">
-							<span id="email-notes">Votre adresse de messagerie ne sera pas publiée.</span>
-						 	Les champs obligatoires sont indiqués avec
-						 	<span class="required">*</span>
+							<span id="email-notes">Votre commentaire sera publié après validation de l'administrateur du blog.
 						</p>
 						<div class="row">
 							<div class="form-group col-12">
-								<textarea class="form-control comments-textarea" placeholder="Commentaire" name="comment" id="comment" rows="4"></textarea>
+								<textarea class="form-control comments-textarea" placeholder="Commentaire*" name="content" id="content" rows="4"></textarea>
 							</div>
 						</div>
 						<div class="row">
-							<div class="form-group col-md-6">
-								<input class="comment-input comment-author" id="author" name="author" placeholder="Pseudo*" type="text" value required="required">
-								<input class="comment-input comment-url" id="url" name="url" type="text" placeholder="Site Web">
+							<div class="form-group">
+								<input style="display: none; width: 0px;" class="comment-input comment-author" id="articleId" name="articleId" type="text" value="{{ article.article_id }}" required="required">
+								<input style="display: none; width: 0px;" class="comment-input comment-author" id="userId" name="userId" type="text" value="{{ session.user_id }}" required="required">
 							</div>
-							<div class="form-group col-md-6">
-								<input class="comment-input comment-email" id="email" name="email" placeholder="Adresse email*" type="email" value required="required">
+							<div class="form-group col-md-6 mx-auto">
 								<input class="comment-submit" id="submit" name="submit" type="submit" value="Laisser un commentaire">
 							</div>
 						</div>

@@ -22,7 +22,7 @@
 {% block content %}
 
     <div class="container mt-5">
-        <h1 style="color: #fff; padding-top: 20px;" >Liste des utilisateurs</h1><br>
+        <h1 style="color: #fff; padding-top: 20px;" class="pt-5">Liste des utilisateurs</h1><br>
         <!--"table-striped" = tableau avec alternance dans Bootstrap-->
         <div class="container">
         <div class="row">
@@ -94,7 +94,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
           <!--ajout de la classe btn-url-supp sur le lien du bouton-->
-          <a href="/user/delete/{{ user.user_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer l'utilisateur</a>
+          <a href="/blog-mvc/user/delete/{{ user.user_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer l'utilisateur</a>
         </div><!-- /.modal-footer -->
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -122,7 +122,7 @@
         /*titre à afficher en "strong" à l'apparition du modal*/
         $('.titre-user').html('<strong>'+titre+'</strong>');
         /*définition de l'url a afficher*/
-        url='delete/'+valsupp;
+        url='/blog-mvc/User/delete/'+valsupp;
         /*quand suppression confirmée, retour à l'url prédéfinie*/
         $('.btn-url-supp').attr('href',url);
       });

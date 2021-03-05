@@ -123,12 +123,13 @@ class userController extends Controller
 
 
 	public function add($user) {
-		$user = new User();
 
 		if ($_SESSION['role'] != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 
+		$user = new User();
+		
 		if(!empty($_POST)) {
 			$user->addUser($_POST);
 			$this->redirect('/blog-mvc/User');

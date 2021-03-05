@@ -17,7 +17,7 @@ class Article extends Connect {
 	public function getArticles() {
 
 		$db = $this->dbConnect();
-		$req = $db->query('SELECT * FROM article WHERE publication = 1 ORDER BY update_date DESC');
+		$req = $db->query('SELECT article.*, media.* FROM article INNER JOIN media ON article.article_id=media.article_id WHERE publication = 1 ORDER BY update_date DESC');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;
@@ -41,7 +41,7 @@ class Article extends Connect {
 
 	public function getLastArticles() {
 		$db = $this->dbConnect();
-		$req = $db->query('SELECT * FROM article WHERE publication = 1 ORDER BY update_date DESC LIMIT 0,3');
+		$req = $db->query('SELECT article.*, media.* FROM article INNER JOIN media ON article.article_id=media.article_id WHERE publication = 1 ORDER BY update_date DESC LIMIT 0,3');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;

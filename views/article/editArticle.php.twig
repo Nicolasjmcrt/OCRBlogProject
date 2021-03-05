@@ -48,8 +48,11 @@
                     <div class="form-group">
                         <input class="form-control-file" type="file" name="media" accept="image/png,image/jpeg">
                     </div>
-                    <img src="/blog-mvc/{{ media.file_name }}">
                     <div class="form-group">
+                        <img src="/blog-mvc/{{ media.file_name }}" class="img-thumbnail edit-art-media">
+                    </div>
+                    <div class="form-group">
+                        <label for="caption">Légende visuel :</label>
                         <input class="form-control" type="text" name="caption" placeholder="légende..." value="{{ media.caption }}">
                     </div>
                     <div class="form-group">

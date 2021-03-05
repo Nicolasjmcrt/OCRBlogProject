@@ -17,11 +17,31 @@ class Comment extends Connect {
 	public function getArticleCommentsFull($articleId) {
 
 		$db = $this->dbConnect();
-		$result = $db->prepare('SELECT comment.*, user.* FROM comment INNER JOIN user ON comment.user_id= user.user_id WHERE article_id=? AND validation=1 ORDER BY comment_date DESC');
+		$result = $db->prepare('SELECT comment.*, user.* FROM comment INNER JOIN user ON comment.user_id= user.user_id WHERE article_id=? AND validation=1 ORDER BY comment_date ASC');
 		$result->execute(array($articleId));
 		$comments = $result->fetchAll(PDO::FETCH_ASSOC);
 
 		return $comments;
+
+	}
+
+
+	public function addComment($comment) {
+
+
+		$db = $this->dbConnect();
+		$req = $db->prepare('INSERT INTO comment SET content=?, comment_date=?, validation=0, user_id=?, article_id = ?');
+
+		if (!empty($_POST)) {
+			$user = $_POST['userId'];
+			$article = $_POST['articleId'];
+		}
+
+		// var_dump($_POST);
+		// exit();
+
+		$req->execute(array($comment['content'], date('Y-m-d H:i:s'), $user, $article));
+
 
 	}
 

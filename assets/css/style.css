@@ -131,6 +131,26 @@ strong {
 	text-decoration: none;
 }
 
+.logout-div {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.nickname {
+	font-weight: 600;
+	color: #11b5e4;
+	padding-right: 30px;
+	margin-bottom: 0;
+}
+
+.nickname-icon {
+	padding-right: 10px;
+}
+
+.nickname-icon img {
+	height: 25px;
+}
+
 
 
 
@@ -561,7 +581,8 @@ strong {
 }
 
 .all-articles-img {
-	max-width: 200px;
+	max-height: 200px;
+	max-width: auto;
 	border-radius: 20px;
 	border: none!important;
 	box-shadow: 0 0 15px rgb(0 0 0 / 15%);
@@ -1053,7 +1074,13 @@ strong {
 	color: #fff;
 }
 
+/*-------------------EDIT ARTICLES----------------*/
 
+
+.edit-art-media {
+	max-width: auto;
+	max-height: 300px!important;
+}
 
 /*------------------------------------------------------------MEDIA QUERIES-----------------------------------------------------------*/
 

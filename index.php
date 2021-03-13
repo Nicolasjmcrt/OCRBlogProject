@@ -5,7 +5,7 @@ ini_set('session.cookie_secure', 1);
 ini_set("session.cookie_httponly", 1);
 session_start();
 require_once ('vendor/autoload.php');
-
+require_once ('controller/sessionController.php');
 require_once ('controller/router.php');
 $url ='';
 if (isset($_GET['url'])) {

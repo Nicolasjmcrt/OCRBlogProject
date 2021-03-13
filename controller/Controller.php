@@ -8,7 +8,7 @@ class Controller
     {
        $loader = new \Twig\Loader\FilesystemLoader('views');
        $this->twig = new \Twig\Environment($loader);
-       $this->twig->addGlobal('session', $_SESSION);
+       $this->twig->addGlobal('session', sessionController::getSession());
 
         
     }

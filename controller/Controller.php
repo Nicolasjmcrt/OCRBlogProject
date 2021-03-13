@@ -3,13 +3,13 @@
 class Controller
 {
     protected $twig;
-
+    protected $session;
     public function __construct()
     {
        $loader = new \Twig\Loader\FilesystemLoader('views');
        $this->twig = new \Twig\Environment($loader);
-       $session = new sessionControler();
-       $this->twig->addGlobal('session', $session->getSession());
+       $this->session = new sessionControler();
+       $this->twig->addGlobal('session', $this->session->getSession());
 
         
     }

@@ -19,7 +19,7 @@ class userController extends Controller
 				
 
 				
-				if($_SESSION['role'] == 'Administrator' || $_SESSION['role'] == 'Author') {
+				if($this->session->getValue('role') == 'Administrator' || $this->session->getValue('role') == 'Author') {
 					
 					$this->redirect('/blog-mvc/Article/admin');
 					$success = 'Vous êtes bien connecté !';

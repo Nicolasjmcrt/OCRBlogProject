@@ -24,6 +24,13 @@
 	<div style="background-color: #fff;" class="container pt-5">
 	<div class="row pt-5">
 		<div class="col-12 av-container">
+		{% if success %}
+        
+        <div class="col-6 mx-auto alert alert-ok text-center" role="alert">
+            {{ success }}
+        </div>
+        
+    {% endif %}
 			<h4 class="col-md-8 mx-auto text-center ap-title mt-5">{{ article.title }}</h4>
 			<h1 class="col-md-8 mx-auto text-center ap-intro">{{ article.intro}}</h1>
 			<p class="col-md-8 mx-auto text-center ap-author-date pb-5"><span>{{ article.first_name }} {{ article.last_name }}</span> / Mis à jour le {{ article.update_date|date("d/m/Y") }}</p>

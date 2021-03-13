@@ -228,8 +228,19 @@ strong {
 	background-image: url(../images/visuel-lien-hover.png);
 }
 
+.title-cv {
+	font-family: 'Big Shoulders Display', cursive;
+    font-weight: 700;
+    color: #11b5e4;
+    font-size: 25px;
+    letter-spacing: -1px;
+    text-align: center;
+}
 
-
+.cv-modal-body {
+	background-color: #201d1d;
+	background-image: url(/blog-mvc/assets/images/pattern-shapes.png);
+}
 
 
 /*-------------------------------------------------HOME SECTION (HERO IMAGE)-----------------------------------------------------------*/

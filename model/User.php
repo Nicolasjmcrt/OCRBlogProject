@@ -104,7 +104,7 @@ class User extends Connect {
 
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT user_id FROM user WHERE nickname = ?');
-		$req->execute([$_POST['nickname']]);
+		$req->execute([$user['nickname']]);
 		return $req->fetch();
 	}
 

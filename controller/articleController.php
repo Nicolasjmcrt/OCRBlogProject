@@ -33,6 +33,9 @@ class articleController extends Controller {
 
 
 	public function view($articleId) {
+
+		$success='';
+
 		$article = new Article();
 		$article = $article->getArticleFull($articleId);
 
@@ -43,15 +46,15 @@ class articleController extends Controller {
 
 		if (!empty($_POST)) {
 
-			// var_dump($_POST);
-			// exit();
 			$addComment = $comment->addComment($_POST);
+
+			$success="Votre commentaire a bien été pris en compte. Il sera publié après validation du modérateur.";
 		}
 
 		$comments = $comment->getArticleCommentsFull($articleId);
 		
 
-		echo $this->twig->render('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'pageTitle' => 'Articles']);
+		echo $this->twig->render('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'success' => $success, 'pageTitle' => 'Articles']);
 
 	}
 
@@ -99,9 +102,12 @@ class articleController extends Controller {
 		$user = $user->getAuthor($article_id);
 
 		if(!empty($_POST)) {
-			// var_dump($_POST);
+			// var_dump($_FILES);
 			// exit();
 			$articleModel->editArticle($_POST);
+			if($_FILES['media']['size']) {
+				$mediaModel->replaceMedia($_FILES, $_POST['caption'], $article); 
+			}
 			$this->redirect('/blog-mvc/Article/admin');
 		}
 

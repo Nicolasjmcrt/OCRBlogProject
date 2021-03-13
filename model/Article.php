@@ -71,8 +71,6 @@ class Article extends Connect {
 
 	public function addArticle($articleId) {
 
-		// var_dump($articleId);
-		// exit();
 		$db = $this->dbConnect();
 		$req = $db->prepare('INSERT INTO article SET title=?, intro=?, catchphrase=?, content=?, update_date = ?, publication=?, user_id=?');
 

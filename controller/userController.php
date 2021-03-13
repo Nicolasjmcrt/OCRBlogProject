@@ -16,15 +16,17 @@ class userController extends Controller
 
 			if($user->check($_POST['login'], $_POST['password'])) {
 				
-				$success = 'Vous êtes bien connecté !';
+				
 
 				
 				if($_SESSION['role'] == 'Administrator' || $_SESSION['role'] == 'Author') {
 					
 					$this->redirect('/blog-mvc/Article/admin');
+					$success = 'Vous êtes bien connecté !';
 					
 				}
 				$this->redirect('/blog-mvc');
+				$success = 'Vous êtes bien connecté !';
 				
 			}
 			$error = 'Il y a une erreur dans le login ou le mot de passe !
@@ -32,6 +34,8 @@ class userController extends Controller
 		}
 
 		echo $this->twig->render('login/login.php.twig', ['error' => $error, 'success' => $success]);
+
+		
 
 	}
 

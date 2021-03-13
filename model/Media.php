@@ -17,6 +17,16 @@ class Media extends Connect {
 }
 
 
+public function replaceMedia($files, $caption, $article) {
+
+    $db = $this->dbConnect();
+    $req = $db->prepare('DELETE from media WHERE article_id=?');
+    $req->execute(array($article['article_id'])); 
+
+    $this->addMedia($files, $caption, $article);
+}
+
+
     public function getMedia($article_id) {
 
         $db = $this->dbConnect();

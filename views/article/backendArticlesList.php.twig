@@ -23,6 +23,13 @@
 
     <div class="container mt-5">
 	<h1 style="color:#fff; padding-top: 20px;" class="pt-5 pb-5">Liste des articles</h1>
+	{% if success %}
+        
+        <div class="col-6 mx-auto alert alert-success text-center" role="alert">
+            {{ success }}
+        </div>
+        
+    {% endif %}
 	<div class="container">
 		<div class="row">
 			<div class="col table-responsive">

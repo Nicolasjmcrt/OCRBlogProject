@@ -46,7 +46,7 @@ class articleController extends Controller {
 
 		if (!empty($_POST)) {
 
-			$addComment = $comment->addComment($_POST);
+			$comment->addComment($_POST);
 
 			$success="Votre commentaire a bien été pris en compte. Il sera publié après validation du modérateur.";
 		}

@@ -1,27 +1,27 @@
 body {
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 18px;
-	line-height: 30px;
-	font-weight: 300;
-	color: #858585;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 18px;
+		line-height: 30px;
+		font-weight: 300;
+		color: #858585;
 }
 
 strong {
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
-	font-weight: 600;
-	color: #4b5157;
-	padding-top: 30px;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 20px;
+		font-weight: 600;
+		color: #4b5157;
+		padding-top: 30px;
 }
 
 .alert-error {
-	color: #fff;
-	background-color: #e51c23;
+		color: #fff;
+		background-color: #e51c23;
 }
 
 .alert-ok {
-	color: #fff;
-	background-color: #4caf50;
+		color: #fff;
+		background-color: #4caf50;
 }
 
 /* ---------------------------------------HEADER------------------------------------------------ */
@@ -140,7 +140,7 @@ strong {
 }
 
 .navbar-toggler {
-	border: 1px solid #11b5e4;
+	border:  1px solid #11b5e4;
 }
 
 /* ---------------------------------------HOME SECTION (MEDIA AND TITLE)------------------------------------------------ */

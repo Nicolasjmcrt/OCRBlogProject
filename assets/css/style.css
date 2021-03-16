@@ -1,16 +1,16 @@
 body {
-	font-family: 'Source Sans Pro', sans-serif !important;
-	font-size: 18px !important;
-	line-height: 30px !important;
-	font-weight: 300 !important;
-	color: #858585 !important;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 18px;
+	line-height: 30px;
+	font-weight: 300;
+	color: #858585;
 }
 
 strong {
-	font-family: 'Source Sans Pro', sans-serif !important;
-	font-size: 20px !important;
-	font-weight: 600 !important;
-	color: #4b5157 !important;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	color: #4b5157;
 	padding-top: 30px;
 }
 
@@ -27,7 +27,7 @@ strong {
 /* ---------------------------------------HEADER------------------------------------------------ */
 
 .navbar-blog {
-	background-color: #201d1d !important;
+	background-color: #201d1d;
 	border-bottom: 2px solid #11b5e4;
 }
 
@@ -36,7 +36,7 @@ strong {
 	font-size: 30px;
 	font-weight: 100;
 	letter-spacing: -1px;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 }
 
 .navbar-title span {
@@ -60,7 +60,7 @@ strong {
 	font-weight: 300;
 	letter-spacing: -1px;
 	text-transform: uppercase;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 	transition: 200ms;
 }
 
@@ -75,7 +75,7 @@ strong {
 	font-weight: 300;
 	letter-spacing: -1px;
 	text-transform: uppercase;
-	color: #201d1d !important;
+	color: #201d1d;
 	transition: 200ms;
 }
 
@@ -89,18 +89,18 @@ strong {
 	font-weight: 300;
 	letter-spacing: -1px;
 	text-transform: uppercase;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 	transition: 200ms;
 }
 
 .navbar-nav a:hover {
 	font-weight: 500;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 }
 
 .navbar-nav .active>.nav-link {
 	font-weight: 500;
-	color: #fff !important;
+	color: #fff;
 }
 
 .logout-link {
@@ -109,13 +109,13 @@ strong {
 	font-weight: 300;
 	letter-spacing: -1px;
 	text-transform: uppercase;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 	transition: 200ms;
 }
 
 .logout-link:hover {
 	font-weight: 500;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 	text-decoration: none;
 }
 
@@ -139,10 +139,14 @@ strong {
 	height: 25px;
 }
 
+.navbar-toggler {
+	border: 1px solid #11b5e4;
+}
+
 /* ---------------------------------------HOME SECTION (MEDIA AND TITLE)------------------------------------------------ */
 
 .container-media-title {
-	background-color: #11b5e4 !important;
+	background-color: #11b5e4;
 }
 
 .container-media-title h3 {
@@ -333,7 +337,7 @@ strong {
 	line-height: 21px;
 	font-weight: 600;
 	color: #201d1d;
-	margin-bottom: 0 !important;
+	margin-bottom: 0;
 }
 
 /* ------------------------------------------------HOME SECTION (CONTACT FORM)----------------------------------------------------------- */
@@ -530,7 +534,7 @@ strong {
 	max-height: 200px;
 	max-width: auto;
 	border-radius: 20px;
-	border: none !important;
+	border: none;
 	box-shadow: 0 0 15px rgb(0 0 0 / 15%);
 }
 
@@ -542,7 +546,7 @@ strong {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center !important;
+	justify-content: center;
 }
 
 /* ------------------------------------------------------HOME SECTION (ARTICLE PAGE)------------------------------------------------- */
@@ -801,15 +805,15 @@ strong {
 }
 
 .titre-user strong {
-	font-weight: 400 !important;
-	font-size: 14px !important;
+	font-weight: 400;
+	font-size: 14px;
 	line-height: 18px;
 }
 
 /* --------------NAVBAR-ADMIN------------------- */
 
 .navbar-bg {
-	background-color: #201d1d !important;
+	background-color: #201d1d;
 }
 
 .navbar-title {
@@ -817,7 +821,7 @@ strong {
 	font-size: 24px;
 	font-weight: 100;
 	letter-spacing: -1px;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 }
 
 .navbar-title span {
@@ -825,7 +829,7 @@ strong {
 }
 
 .active>.nav-link {
-	color: #11b5e4 !important;
+	color: #11b5e4;
 }
 
 .admin-nav-div {
@@ -847,7 +851,7 @@ strong {
 	font-size: 18px;
 	font-weight: 400;
 	letter-spacing: -1px;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 }
 
 .logout-icon {
@@ -899,7 +903,7 @@ strong {
 /* -------------------CONFIRM-PAGE---------------- */
 
 .login-link a {
-	text-decoration: none !important;
+	text-decoration: none;
 	color: #fff;
 	font-size: 1rem;
 	background-color: #11b5e4;
@@ -922,7 +926,7 @@ strong {
 /* -------------------FOOTER-ADMIN-AND-LOG---------------- */
 
 .bg-footer {
-	background-color: #201d1d !important;
+	background-color: #201d1d;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -941,7 +945,7 @@ strong {
 	font-size: 18px;
 	font-weight: 400;
 	letter-spacing: -1px;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 }
 
 .bg-footer p {
@@ -949,7 +953,7 @@ strong {
 	font-size: 24px;
 	font-weight: 100;
 	letter-spacing: -1px;
-	color: #11b5e4 !important;
+	color: #11b5e4;
 	margin-bottom: 0;
 }
 
@@ -969,21 +973,21 @@ strong {
 /* -------------------LIST USER VIEW---------------- */
 
 .trash-btn {
-	background-color: rgba(255, 255, 255, 0) !important;
-	border: none !important;
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
 }
 
 .th-align {
-	vertical-align: middle !important;
+	vertical-align: middle;
 }
 
 .td-align {
-	vertical-align: middle !important;
+	vertical-align: middle;
 }
 
 .text-nickname {
-	color: #007bff !important;
-	font-weight: 600 !important;
+	color: #007bff;
+	font-weight: 600;
 }
 
 /* -------------------USER VIEW---------------- */
@@ -1002,7 +1006,7 @@ strong {
 
 .edit-art-media {
 	max-width: auto;
-	max-height: 300px !important;
+	max-height: 300px;
 }
 
 /* ------------------------------------------------------------MEDIA QUERIES----------------------------------------------------------- */

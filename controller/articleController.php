@@ -17,6 +17,10 @@ class articleController extends Controller {
 
 
 	public function admin() {
+
+		if ($_SESSION['role'] != 'Administrator' && $_SESSION['role'] != 'Author') {
+			$this->redirect('/blog-mvc');
+		}
 		$article = new Article();
 		$articles = $article->getAllArticles();
 
@@ -102,8 +106,7 @@ class articleController extends Controller {
 		$user = $user->getAuthor($article_id);
 
 		if(!empty($_POST)) {
-			// var_dump($_FILES);
-			// exit();
+
 			$articleModel->editArticle($_POST);
 			if($_FILES['media']['size']) {
 				$mediaModel->replaceMedia($_FILES, $_POST['caption'], $article); 

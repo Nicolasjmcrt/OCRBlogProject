@@ -33,7 +33,7 @@ class userController extends Controller
 			Avez-vous pensé à valider votre compte ?';
 		}
 
-		echo $this->twig->render('login/login.php.twig', ['error' => $error, 'success' => $success]);
+		$this->view->show('login/login.php.twig', ['error' => $error, 'success' => $success]);
 
 		
 
@@ -41,7 +41,7 @@ class userController extends Controller
 
 	public function logout() {
 
-		$_SESSION = array();
+		$this->session->reset();
 
 		$this->redirect('/blog-mvc');
 
@@ -87,7 +87,7 @@ class userController extends Controller
 			}
 		}
 
-		echo $this->twig->render('register/register.php.twig', ['error' => $error]);
+		$this->view->show('register/register.php.twig', ['error' => $error]);
 	}
 
 
@@ -108,7 +108,7 @@ class userController extends Controller
 			$error = "Une erreur s'est produite pendant la création de votre compte.";
 		}
 
-			echo $this->twig->render('confirm/confirm.php.twig', ['user' => $user, 'error' => $error, 'success' => $success]);
+		$this->view->show('confirm/confirm.php.twig', ['user' => $user, 'error' => $error, 'success' => $success]);
 	}
 
 
@@ -117,18 +117,18 @@ class userController extends Controller
 		$user = new User();
 		$users = $user->getUsers();
 
-		if ($_SESSION['role'] != 'Administrator') {
+		if ($this->session->getValue('role') != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 
-		echo $this->twig->render('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users']);
+		$this->view->show('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users']);
 	}
 	
 
 
 	public function add($user) {
 
-		if ($_SESSION['role'] != 'Administrator') {
+		if ($this->session->getValue('role') != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 
@@ -139,14 +139,14 @@ class userController extends Controller
 			$this->redirect('/blog-mvc/User');
 		}
 		
-		echo $this->twig->render('user/addUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
+		$this->view->show('user/addUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
 
 	}
 
 
 	public function edit($userId) {
 
-		if ($_SESSION['role'] != 'Administrator') {
+		if ($this->session->getValue('role') != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 
@@ -159,13 +159,13 @@ class userController extends Controller
 			$User->editUser($_POST);
 			$this->redirect('/blog-mvc/User');
 		}
-		echo $this->twig->render('user/editUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
+		$this->view->show('user/editUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
 		
 	}
 
 	public function delete($userId) {
 
-		if ($_SESSION['role'] != 'Administrator') {
+		if ($this->session->getValue('role') != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 		

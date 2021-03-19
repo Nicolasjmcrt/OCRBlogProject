@@ -2,24 +2,21 @@
 
 class Controller
 {
-    protected $twig;
+    protected $view;
     protected $session;
     public function __construct()
     {
-       $loader = new \Twig\Loader\FilesystemLoader('views');
-       $this->twig = new \Twig\Environment($loader);
-       $this->session = new sessionController();
-       $this->twig->addGlobal('session', $this->session->getSession());
+        $this->view = new View();
+        $this->session = new sessionController();
+        $this->view->addGlobal('session', $this->session->getSession());
 
-        
     }
 
-    public function redirect($url) {
+    public function redirect($url)
+    {
 
-        header('Location: '.$url);
+        header('Location: ' . $url);
         exit();
     }
-    
+
 };
-
-

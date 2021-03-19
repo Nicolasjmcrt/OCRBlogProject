@@ -828,10 +828,6 @@ strong {
   font-weight: 500;
 }
 
-.active > .nav-link {
-  color: #11b5e4;
-}
-
 .admin-nav-div {
   justify-content: space-between;
 }

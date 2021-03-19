@@ -1,7 +1,7 @@
 <?php
 
-require_once ('model/Article.php');
-require_once ('controller/Controller.php');
+require_once 'model/Article.php';
+require_once 'controller/Controller.php';
 
 class homeController extends Controller {
 

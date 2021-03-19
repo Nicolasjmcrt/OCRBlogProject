@@ -1,10 +1,10 @@
 <?php
 
-require_once ('model/Article.php');
-require_once ('model/User.php');
-require_once ('model/Comment.php');
-require_once ('model/Media.php');
-require_once ('controller/Controller.php');
+require_once 'model/Article.php';
+require_once 'model/User.php';
+require_once 'model/Comment.php';
+require_once 'model/Media.php';
+require_once 'controller/Controller.php';
 
 class articleController extends Controller {
 

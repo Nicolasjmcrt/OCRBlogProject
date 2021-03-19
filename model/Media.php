@@ -1,6 +1,6 @@
 <?php
 
-require_once('model/Connect.php');
+require_once 'model/Connect.php';
 
 class Media extends Connect {
 

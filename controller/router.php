@@ -27,7 +27,7 @@ class router
 		if (isset($data[2])) {
 			$params = $data[2];
 		}
-		require_once('controller/'.$controller.'.php');
+		require_once 'controller/'.$controller.'.php';
 		$ctrl = new $controller;
 		$ctrl->$method($params);
 	}

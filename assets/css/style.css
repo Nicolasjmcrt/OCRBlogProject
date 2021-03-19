@@ -329,6 +329,7 @@ strong {
   letter-spacing: -1px;
   color: #11b5e4;
   text-transform: uppercase;
+  padding-top: 20px;
 }
 
 .article-card-text {
@@ -536,10 +537,6 @@ strong {
   border-radius: 20px;
   border: none;
   box-shadow: 0 0 15px rgb(0 0 0 / 15%);
-}
-
-.article-title {
-  padding-top: 20px;
 }
 
 .aai-container {
@@ -816,7 +813,7 @@ strong {
   background-color: #201d1d;
 }
 
-.navbar-title {
+.navbar-title-admin {
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 100;
@@ -824,7 +821,7 @@ strong {
   color: #11b5e4;
 }
 
-.navbar-title span {
+.navbar-title-admin span {
   font-weight: 500;
 }
 
@@ -1014,12 +1011,15 @@ strong {
     letter-spacing: -8px;
     text-align: left;
   }
+
   .container-media-title h3 {
     text-align: left;
   }
+
   .link-last-article a {
     justify-content: flex-start;
   }
+
   .hero-img-title h2 {
     font-size: 120px;
     text-align: left;
@@ -1030,12 +1030,15 @@ strong {
   .adress-col p {
     border-right: 1px solid #11b5e4;
   }
+
   .article-block {
     flex-direction: row;
   }
+
   .article-title {
     padding-top: 0;
   }
+
   .aai-container {
     justify-content: flex-start;
   }
@@ -1052,9 +1055,11 @@ strong {
   .contact-input-top {
     border-top-left-radius: 20px;
   }
+
   .contact-input-bottom {
     border-bottom-left-radius: 20px;
   }
+
   .contact-textarea {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -1065,6 +1070,7 @@ strong {
   .link-last-article a {
     font-size: 30px;
   }
+
   .contact-form h2 {
     font-size: 55px;
   }

@@ -12,7 +12,7 @@ class articleController extends Controller {
 		$article = new Article();
 		$articles = $article->getArticles();
 
-		echo $this->twig->render('article/listArticles.php.twig', ['articles' => $articles, 'pageTitle' => 'Articles']);
+		$this->view->show('article/listArticles.php.twig', ['articles' => $articles, 'pageTitle' => 'Articles']);
 	}
 
 
@@ -24,7 +24,7 @@ class articleController extends Controller {
 		$article = new Article();
 		$articles = $article->getAllArticles();
 
-		echo $this->twig->render('article/backendArticlesList.php.twig', ['articles' => $articles, 'pageTitle' => 'BackArticles']);
+		$this->view->show('article/backendArticlesList.php.twig', ['articles' => $articles, 'pageTitle' => 'BackArticles']);
 	}
 
 
@@ -58,7 +58,7 @@ class articleController extends Controller {
 		$comments = $comment->getArticleCommentsFull($articleId);
 		
 
-		echo $this->twig->render('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'success' => $success, 'pageTitle' => 'Articles']);
+		$this->view->show('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'success' => $success, 'pageTitle' => 'Articles']);
 
 	}
 
@@ -87,7 +87,7 @@ class articleController extends Controller {
 		}
 
 	
-		echo $this->twig->render('article/addArticle.php.twig', ['user' => $user, 'article' => $article, 'pageTitle' => 'BackArticles']);
+		$this->view->show('article/addArticle.php.twig', ['user' => $user, 'article' => $article, 'pageTitle' => 'BackArticles']);
 	}
 
 
@@ -114,7 +114,7 @@ class articleController extends Controller {
 			$this->redirect('/blog-mvc/Article/admin');
 		}
 
-		echo $this->twig->render('article/editArticle.php.twig', ['user' => $user, 'article' => $article, 'media' => $media, 'pageTitle' => 'BackArticles']);
+		$this->view->show('article/editArticle.php.twig', ['user' => $user, 'article' => $article, 'media' => $media, 'pageTitle' => 'BackArticles']);
 	}
 
 

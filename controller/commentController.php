@@ -22,7 +22,7 @@ class commentController extends Controller {
 			$this->redirect('/blog-mvc');
 		}
 
-		echo $this->twig->render('comment/invalidComments.php.twig', ['comments' => $comments, 'articles' => $articles, 'pageTitle' => 'Comments']);
+		$this->view->show('comment/invalidComments.php.twig', ['comments' => $comments, 'articles' => $articles, 'pageTitle' => 'Comments']);
 
 	}
 

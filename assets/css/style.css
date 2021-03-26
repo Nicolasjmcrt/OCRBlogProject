@@ -93,7 +93,7 @@ strong {
   transition: 200ms;
 }
 
-.navbar-nav li a:hover {
+.navbar-nav a:hover {
   font-weight: 500;
   color: #11b5e4;
 }

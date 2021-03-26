@@ -91,11 +91,9 @@ class User extends Connect
 
         $req->execute(array($user['nickname'], $user['login'], $password, $token, date('Y-m-d H:i:s')));
 
-        $user_id = $dtb->lastInsertId();
-
     }
 
-    public function checkNickname($user)
+    public function checkNickname()
     {
 
         $dtb = $this->dbConnect();
@@ -104,7 +102,7 @@ class User extends Connect
         return $req->fetch();
     }
 
-    public function checkLogin($user)
+    public function checkLogin()
     {
 
         $dtb = $this->dbConnect();
@@ -128,20 +126,17 @@ class User extends Connect
 
         if (!$check) {
             return false;
-        } else {
-
-            $req = $dtb->prepare('UPDATE user SET active_account = 1, token = NULL WHERE token = ?');
-            $req->execute(array($token));
-
-            return true;
         }
+
+        $req = $dtb->prepare('UPDATE user SET active_account = 1, token = NULL WHERE token = ?');
+        $req->execute(array($token));
+
+        return true;
 
     }
 
     public function addUser($user)
     {
-
-        $token = bin2hex(random_bytes(78));
 
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('INSERT INTO user SET first_name=?, last_name=?, nickname=?, login=?, email=?, password=?, role=?, active_account=?');

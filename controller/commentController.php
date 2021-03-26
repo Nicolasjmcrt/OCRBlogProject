@@ -14,10 +14,10 @@ class commentController extends Controller {
 		$article = new Article();
 		$articles = $article->getArticleFromComment();
 
-		if ($_SESSION['role'] == 'Author') {
+		if ($this->session->getValue('role') == 'Author') {
 
 			$this->redirect('/blog-mvc/article/admin');
-		} elseif ($_SESSION['role'] != 'Administrator') {
+		} elseif ($this->session->getValue('role') != 'Administrator') {
 
 			$this->redirect('/blog-mvc');
 		}
@@ -39,7 +39,7 @@ class commentController extends Controller {
 		$comment = new Comment();
 		$comment->validate($commentId);
 
-		if ($_SESSION['role'] != 'Administrator') {
+		if ($this->session->getValue('role') != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 
@@ -51,7 +51,7 @@ class commentController extends Controller {
 		$comment = new Comment();
 		$comment->delete($commentId);
 
-		if ($_SESSION['role'] != 'Administrator') {
+		if ($this->session->getValue('role') != 'Administrator') {
 			$this->redirect('/blog-mvc');
 		}
 

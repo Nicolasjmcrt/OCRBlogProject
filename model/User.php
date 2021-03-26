@@ -61,7 +61,7 @@ class User extends Connect {
 		$check = password_verify($password, $user['password']);
 		if(password_needs_rehash($user['password'], PASSWORD_BCRYPT)) {
 			$password = password_hash($user['password'], PASSWORD_BCRYPT);
-			$req=$db->prepare('UPDATE user SET password=? WHERE user_id=?');
+			$req=$dtb->prepare('UPDATE user SET password=? WHERE user_id=?');
 			$req->execute(array($password, $user['user_id']));
 		}
 		
@@ -104,7 +104,7 @@ class User extends Connect {
 
 		$dtb = $this->dbConnect();
 		$req = $dtb->prepare('SELECT user_id FROM user WHERE nickname = ?');
-		$req->execute([$user['nickname']]);
+		$req->execute([$_POST['nickname']]);
 		return $req->fetch();
 	}
 

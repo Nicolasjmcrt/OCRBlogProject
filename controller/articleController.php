@@ -6,126 +6,120 @@ require_once 'model/Comment.php';
 require_once 'model/Media.php';
 require_once 'controller/Controller.php';
 
-class articleController extends Controller {
+class articleController extends Controller
+{
 
-	public function list() {
-		$article = new Article();
-		$articles = $article->getArticles();
+    function list() {
+        $article = new Article();
+        $articles = $article->getArticles();
 
-		$this->view->show('article/listArticles.php.twig', ['articles' => $articles, 'pageTitle' => 'Articles']);
-	}
+        $this->view->show('article/listArticles.php.twig', ['articles' => $articles, 'pageTitle' => 'Articles']);
+    }
 
+    public function admin()
+    {
 
-	public function admin() {
+        if ($this->session->getValue('role') != 'Administrator' && $this->session->getValue('role') != 'Author') {
+            $this->redirect('/blog-mvc');
+        }
+        $article = new Article();
+        $articles = $article->getAllArticles();
 
-		if ($_SESSION['role'] != 'Administrator' && $_SESSION['role'] != 'Author') {
-			$this->redirect('/blog-mvc');
-		}
-		$article = new Article();
-		$articles = $article->getAllArticles();
+        $this->view->show('article/backendArticlesList.php.twig', ['articles' => $articles, 'pageTitle' => 'BackArticles']);
+    }
 
-		$this->view->show('article/backendArticlesList.php.twig', ['articles' => $articles, 'pageTitle' => 'BackArticles']);
-	}
+    public function last()
+    {
+        $article = new Article();
+        $lastId = $article->getLastId();
+        $this->view($lastId);
+    }
 
+    public function view($articleId)
+    {
 
-	public function last() {
-		$article = new Article();
-		$lastId = $article->getLastId();
-		$this->view($lastId);
-	}
+        $success = '';
 
+        $article = new Article();
+        $article = $article->getArticleFull($articleId);
 
+        $mediaModel = new Media();
+        $media = $mediaModel->getMedia($articleId);
 
-	public function view($articleId) {
+        $comment = new Comment();
 
-		$success='';
+        if (!empty($_POST)) {
 
-		$article = new Article();
-		$article = $article->getArticleFull($articleId);
+            $comment->addComment($_POST);
 
-		$mediaModel = new Media();
-		$media = $mediaModel->getMedia($articleId);
+            $success = "Votre commentaire a bien été pris en compte. Il sera publié après validation du modérateur.";
+        }
 
-		$comment = new Comment();
+        $comments = $comment->getArticleCommentsFull($articleId);
 
-		if (!empty($_POST)) {
+        $this->view->show('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'success' => $success, 'pageTitle' => 'Articles']);
 
-			$comment->addComment($_POST);
+    }
 
-			$success="Votre commentaire a bien été pris en compte. Il sera publié après validation du modérateur.";
-		}
+    public function add($articleId)
+    {
 
-		$comments = $comment->getArticleCommentsFull($articleId);
-		
+        if ($this->session->getValue('role') != 'Administrator' && $this->session->getValue('role') != 'Author') {
+            $this->redirect('/blog-mvc');
+        }
 
-		$this->view->show('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'success' => $success, 'pageTitle' => 'Articles']);
+        $article = new Article();
+        $user = new User();
+        $user = $user->getAuthor($articleId);
+        $media = new Media();
 
-	}
+        if (!empty($_POST)) {
 
+            $newArticle = $article->addArticle($_POST);
 
-	public function add($articleId) {
+            $media->addMedia($_FILES, $_POST['caption'], $newArticle);
 
-		if ($_SESSION['role'] != 'Administrator' && $_SESSION['role'] != 'Author') {
-			$this->redirect('/blog-mvc');
-		}
+            $this->redirect('/blog-mvc/Article/admin');
+        }
 
-		$article = new Article();
-		$user = new User();
-		$user = $user->getAuthor($articleId);
-		$media = new Media();
+        $this->view->show('article/addArticle.php.twig', ['user' => $user, 'article' => $article, 'pageTitle' => 'BackArticles']);
+    }
 
-		
+    public function edit($article_id)
+    {
 
+        if ($this->session->getValue('role') != 'Administrator' && $this->session->getValue('role') != 'Author') {
+            $this->redirect('/blog-mvc');
+        }
 
-		if(!empty($_POST)) {
+        $articleModel = new Article();
+        $article = $articleModel->getArticle($article_id);
+        $mediaModel = new Media();
+        $media = $mediaModel->getMedia($article_id);
+        $user = new User();
+        $user = $user->getAuthor($article_id);
 
-			$newArticle = $article->addArticle($_POST);
+        if (!empty($_POST)) {
 
-			$media->addMedia($_FILES, $_POST['caption'], $newArticle);
+            $articleModel->editArticle($_POST);
+            if ($_FILES['media']['size']) {
+                $mediaModel->replaceMedia($_FILES, $_POST['caption'], $article);
+            }
+            $this->redirect('/blog-mvc/Article/admin');
+        }
 
-			$this->redirect('/blog-mvc/Article/admin');
-		}
+        $this->view->show('article/editArticle.php.twig', ['user' => $user, 'article' => $article, 'media' => $media, 'pageTitle' => 'BackArticles']);
+    }
 
-	
-		$this->view->show('article/addArticle.php.twig', ['user' => $user, 'article' => $article, 'pageTitle' => 'BackArticles']);
-	}
+    public function delete($articleId)
+    {
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
 
+        $article = new Article();
+        $article->delete($articleId);
 
-
-	public function edit($article_id) {
-
-		if ($_SESSION['role'] != 'Administrator' && $_SESSION['role'] != 'Author') {
-			$this->redirect('/blog-mvc');
-		}
-		
-		$articleModel = new Article();
-		$article = $articleModel->getArticle($article_id);
-		$mediaModel = new Media();
-		$media = $mediaModel->getMedia($article_id);
-		$user = new User();
-		$user = $user->getAuthor($article_id);
-
-		if(!empty($_POST)) {
-
-			$articleModel->editArticle($_POST);
-			if($_FILES['media']['size']) {
-				$mediaModel->replaceMedia($_FILES, $_POST['caption'], $article); 
-			}
-			$this->redirect('/blog-mvc/Article/admin');
-		}
-
-		$this->view->show('article/editArticle.php.twig', ['user' => $user, 'article' => $article, 'media' => $media, 'pageTitle' => 'BackArticles']);
-	}
-
-
-	public function delete($articleId) {
-		if ($_SESSION['role'] != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
-
-		$article = new Article();
-		$article->delete($articleId);
-
-		$this->redirect('/blog-mvc/Article/admin');
-	}
+        $this->redirect('/blog-mvc/Article/admin');
+    }
 }

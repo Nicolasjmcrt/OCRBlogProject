@@ -7,6 +7,7 @@ session_start();
 require_once 'vendor/autoload.php';
 require_once 'controller/router.php';
 require_once 'controller/sessionController.php';
+require_once 'controller/postController.php';
 require_once 'controller/View.php';
 $url ='';
 if (isset($_GET['url'])) {

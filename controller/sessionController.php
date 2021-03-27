@@ -15,6 +15,13 @@ class sessionController
         return $_SESSION[$key];
     }
 
+    public function setValue($key, $value)
+    {
+
+         $_SESSION[$key]=$value;
+    }
+
+
     public function reset()
     {
 

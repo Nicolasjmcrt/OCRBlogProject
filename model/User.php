@@ -69,11 +69,11 @@ class User extends Connect
 
         if ($check) {
 
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['nickname'] = $user['nickname'];
-            $_SESSION['first_name'] = $user['first_name'];
-            $_SESSION['last_name'] = $user['last_name'];
+            $this->session->setValue('role', $user['role']);
+            $this->session->setValue('user_id', $user['user_id']);
+            $this->session->setValue('nickname', $user['nickname']);
+            $this->session->setValue('first_name', $user['first_name']);
+            $this->session->setValue('last_name', $user['last_name']);
 
             return true;
         }

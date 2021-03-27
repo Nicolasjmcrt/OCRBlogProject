@@ -3,6 +3,13 @@
 class Connect
 {
 
+    protected $session;
+    public function __construct()
+    {
+
+        $this->session = new sessionController();
+
+    }
     protected function dbConnect()
     {
 

@@ -11,10 +11,10 @@ class userController extends Controller
 		$error ='';
 		$success='';
 
-		if(! empty($_POST)) {
+		if(! empty($this->post->getPost())) {
 			$user = new User();
 
-			if($user->check($_POST['login'], $_POST['password'])) {
+			if($user->check($this->post->getValue('login'), $this->post->getValue('password'))) {
 				
 				
 
@@ -52,10 +52,10 @@ class userController extends Controller
 		
 		$error = array();
 
-		if(!empty($_POST)) {
+		if(!empty($this->post->getPost())) {
 			$user = new User();
 
-			if(empty($_POST['nickname']) || !preg_match('/[a-zA-Z0-9_]+$/', $_POST['nickname'])) {
+			if(empty($this->post->getValue('nickname')) || !preg_match('/[a-zA-Z0-9_]+$/', $this->post->getValue('nickname'))) {
 
 				$error = "Votre pseudo n'est pas valide ! Seuls les lettres minuscules et majuscules, les chiffres et le tiret underscore (_) sont autorisés.";
 			} else {
@@ -65,7 +65,7 @@ class userController extends Controller
 				}
 			}
 
-			if(empty($_POST['login']) || !filter_var($_POST['login'], FILTER_VALIDATE_EMAIL)) { 
+			if(empty($this->post->getValue('login')) || !filter_var($this->post->getValue('login'), FILTER_VALIDATE_EMAIL)) { 
 			
 				$error = "Votre e-mail n'est pas valide !";
 			}
@@ -74,14 +74,14 @@ class userController extends Controller
 				$error = "Ce Login est déjà utilisé !";
 			}
 
-			if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
+			if(empty($this->post->getValue('password')) || $this->post->getValue('password') != $this->post->getValue('password_confirm')) {
 
 				$error = "Vous devez saisir un mot de passe valide !";
 			}
 
 			if(empty($error)) {
 
-				$user->createVisitor($_POST);
+				$user->createVisitor($this->post->getPost());
 
 				$this->redirect('/blog-mvc/User/login');
 			}
@@ -155,8 +155,8 @@ class userController extends Controller
 
 		
 
-		if(!empty($_POST)) {
-			$User->editUser($_POST);
+		if(!empty($this->post->getPost())) {
+			$User->editUser($this->post->getPost());
 			$this->redirect('/blog-mvc/User');
 		}
 		$this->view->show('user/editUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);

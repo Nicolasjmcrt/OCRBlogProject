@@ -4,61 +4,56 @@ require_once 'model/Comment.php';
 require_once 'model/Article.php';
 require_once 'controller/Controller.php';
 
-class commentController extends Controller {
+class commentController extends Controller
+{
 
-	public function list() {
+    function list() {
 
-		$comment = new Comment();
-		$comments = $comment->getInvalidComments();
-				
-		$article = new Article();
-		$articles = $article->getArticleFromComment();
+        $comment = new Comment();
+        $comments = $comment->getInvalidComments();
 
-		if ($this->session->getValue('role') == 'Author') {
+        if ($this->session->getValue('role') == 'Author') {
 
-			$this->redirect('/blog-mvc/article/admin');
-		} elseif ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc/article/admin');
+        } elseif ($this->session->getValue('role') != 'Administrator') {
 
-			$this->redirect('/blog-mvc');
-		}
+            $this->redirect('/blog-mvc');
+        }
 
-		$this->view->show('comment/invalidComments.php.twig', ['comments' => $comments, 'articles' => $articles, 'pageTitle' => 'Comments']);
+        $this->view->show('comment/invalidComments.php.twig', ['comments' => $comments, 'pageTitle' => 'Comments']);
 
-	}
+    }
 
+    public function view($commentId)
+    {
+        $comment = new Comment();
 
-	public function view($commentId) {
-		$comment = new Comment();
+        echo '<pre>';
+        print_r($comment->getComment($commentId));
+    }
 
-		echo '<pre>';
-		print_r($comment->getComment($commentId));
-	}
+    public function validate($commentId)
+    {
+        $comment = new Comment();
+        $comment->validate($commentId);
 
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
 
-	public function validate($commentId) {
-		$comment = new Comment();
-		$comment->validate($commentId);
+        $this->redirect('/blog-mvc/Comment');
+    }
 
-		if ($this->session->getValue('role') != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
+    public function delete($commentId)
+    {
+        $comment = new Comment();
+        $comment->delete($commentId);
 
-		$this->redirect('/blog-mvc/Comment');
-	}
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
 
-
-	public function delete($commentId) {
-		$comment = new Comment();
-		$comment->delete($commentId);
-
-		if ($this->session->getValue('role') != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
-
-		$this->redirect('/blog-mvc/Comment');
-	}
+        $this->redirect('/blog-mvc/Comment');
+    }
 
 }
-
-
-

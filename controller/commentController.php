@@ -1,8 +1,14 @@
 <?php
 
-require_once 'model/Comment.php';
-require_once 'model/Article.php';
-require_once 'controller/Controller.php';
+namespace controller;
+
+use model\Comment;
+use model\Article;
+use controller\Controller;
+
+// require_once 'model/Comment.php';
+// require_once 'model/Article.php';
+// require_once 'controller/Controller.php';
 
 class commentController extends Controller
 {

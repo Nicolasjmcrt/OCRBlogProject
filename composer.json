@@ -11,5 +11,11 @@
             "name": "Nicolas Jumeaucourt",
             "email": "contact@coyotech.fr"
         }
-    ]
+    ], 
+    "autoload": {
+        "psr-4": {
+            "blog-mvc/model\\": "model/",
+            "blog-mvc/controller\\": "controller/"
+        }
+    }
 }

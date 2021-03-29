@@ -1,4 +1,7 @@
 <?php
+
+namespace controller;
+
 class view
 {
     private $twig;

@@ -1,5 +1,7 @@
 <?php
 
+namespace controller;
+
 class router
 {
     private $url;
@@ -30,5 +32,6 @@ class router
         require_once 'controller/' . $controller . '.php';
         $ctrl = new $controller;
         $ctrl->$method($params);
+
     }
 }

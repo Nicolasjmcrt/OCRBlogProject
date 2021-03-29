@@ -1,10 +1,18 @@
 <?php
 
-require_once 'model/Article.php';
-require_once 'model/User.php';
-require_once 'model/Comment.php';
-require_once 'model/Media.php';
-require_once 'controller/Controller.php';
+namespace controller;
+
+use model\Article;
+use model\User;
+use model\Comment;
+use model\Media;
+use controller\Controller;
+
+// require_once 'model/Article.php';
+// require_once 'model/User.php';
+// require_once 'model/Comment.php';
+// require_once 'model/Media.php';
+// require_once 'controller/Controller.php';
 
 class articleController extends Controller
 {

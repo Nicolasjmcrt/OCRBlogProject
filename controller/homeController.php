@@ -1,7 +1,12 @@
 <?php
 
-require_once 'model/Article.php';
-require_once 'controller/Controller.php';
+namespace controller;
+
+use model\Article;
+use controller\Controller;
+
+// require_once 'model/Article.php';
+// require_once 'controller/Controller.php';
 
 class homeController extends Controller {
 

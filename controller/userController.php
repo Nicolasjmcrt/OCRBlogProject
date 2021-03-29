@@ -1,7 +1,12 @@
 <?php
 
-require_once 'model/User.php';
-require_once 'controller/Controller.php';
+namespace controller;
+
+use model\User;
+use controller\Controller;
+
+// require_once 'model/User.php';
+// require_once 'controller/Controller.php';
 
 
 class userController extends Controller
@@ -134,8 +139,8 @@ class userController extends Controller
 
 		$user = new User();
 		
-		if(!empty($_POST)) {
-			$user->addUser($_POST);
+		if(!empty($this->post->getPost())) {
+			$user->addUser($this->post->getPost());
 			$this->redirect('/blog-mvc/User');
 		}
 		

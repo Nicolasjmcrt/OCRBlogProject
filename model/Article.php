@@ -1,6 +1,10 @@
 <?php
 
-require_once 'model/Connect.php';
+namespace model;
+
+use model\Connect;
+
+// require_once 'model/Connect.php';
 
 class Article extends Connect
 {

@@ -14,8 +14,8 @@
     ], 
     "autoload": {
         "psr-4": {
-            "blog-mvc/model\\": "model/",
-            "blog-mvc/controller\\": "controller/"
+            "model\\": "blog-mvc/model/",
+            "controller\\": "blog-mvc/controller/"
         }
     }
 }

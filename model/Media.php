@@ -12,7 +12,7 @@ class Media extends Connect
     public function addMedia($files, $caption, $article)
     {
 
-        $ext = new SplFileInfo($files['media']['name']);
+        $ext = new \SplFileInfo($files['media']['name']);
         $filename = "media/article/" . uniqid() . "." . $ext->getExtension();
         rename($files['media']['tmp_name'], $filename);
 
@@ -37,7 +37,7 @@ class Media extends Connect
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT * FROM media WHERE article_id = ?');
         $req->execute(array($article_id));
-        $media = $req->fetch(PDO::FETCH_ASSOC);
+        $media = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $media;
     }

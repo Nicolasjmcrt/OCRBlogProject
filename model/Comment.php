@@ -14,7 +14,7 @@ class Comment extends Connect
 
         $dtb = $this->dbConnect();
         $req = $dtb->query('SELECT comment.*, user.*, article.article_id, article.title FROM comment INNER JOIN user ON comment.user_id=user.user_id INNER JOIN article ON comment.article_id=article.article_id WHERE validation = 0');
-        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $result = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -24,7 +24,7 @@ class Comment extends Connect
         $dtb = $this->dbConnect();
         $result = $dtb->prepare('SELECT comment.*, user.* FROM comment INNER JOIN user ON comment.user_id= user.user_id WHERE article_id=? AND validation=1 ORDER BY comment_date ASC');
         $result->execute(array($articleId));
-        $comments = $result->fetchAll(PDO::FETCH_ASSOC);
+        $comments = $result->fetchAll(\PDO::FETCH_ASSOC);
 
         return $comments;
 

@@ -14,7 +14,7 @@ class Article extends Connect
 
         $dtb = $this->dbConnect();
         $req = $dtb->query('SELECT * FROM article ORDER BY update_date DESC');
-        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $result = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
     }
@@ -24,7 +24,7 @@ class Article extends Connect
 
         $dtb = $this->dbConnect();
         $req = $dtb->query('SELECT article.*, media.* FROM article INNER JOIN media ON article.article_id=media.article_id WHERE publication = 1 ORDER BY update_date DESC');
-        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $result = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
     }
@@ -33,7 +33,7 @@ class Article extends Connect
     {
         $dtb = $this->dbConnect();
         $req = $dtb->query('SELECT article_id FROM article WHERE publication = 1 ORDER BY update_date DESC LIMIT 0,1');
-        $result = $req->fetch(PDO::FETCH_ASSOC);
+        $result = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $result['article_id'];
     }
@@ -42,18 +42,24 @@ class Article extends Connect
     {
         $dtb = $this->dbConnect();
         $req = $dtb->query('SELECT article.*, media.* FROM article INNER JOIN media ON article.article_id=media.article_id WHERE publication = 1 ORDER BY update_date DESC LIMIT 0,3');
-        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $result = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
     }
-
-    public function getArticle($article_id)
+    
+    /**
+     * retourne un article en fonction de son id
+     *
+     * @param  int $article_id
+     * @return array
+     */
+    public function getArticle(int $article_id): array
     {
 
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT * FROM article WHERE article_id = ?');
         $req->execute(array($article_id));
-        $article = $req->fetch(PDO::FETCH_ASSOC);
+        $article = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $article;
     }
@@ -64,7 +70,7 @@ class Article extends Connect
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT article.*, user.* FROM article INNER JOIN user ON article.user_id=user.user_id WHERE article_id = ?');
         $req->execute(array($articleId));
-        $article = $req->fetch(PDO::FETCH_ASSOC);
+        $article = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $article;
     }

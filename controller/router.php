@@ -15,9 +15,9 @@ class router
         $data = explode('/', $this->url);
 
         if (!isset($data[0]) || empty($data[0])) {
-            $controller = 'homeController';
+            $controller = 'controller\homeController';
         } else {
-            $controller = $data[0] . 'Controller';
+            $controller = 'controller\\'. $data[0] . 'Controller';
         }
 
         if (!isset($data[1]) || empty($data[1])) {
@@ -29,9 +29,10 @@ class router
         if (isset($data[2])) {
             $params = $data[2];
         }
-        require_once 'controller/' . $controller . '.php';
+        
         $ctrl = new $controller;
         $ctrl->$method($params);
 
     }
+
 }

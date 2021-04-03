@@ -8,16 +8,12 @@ use model\Comment;
 use model\Media;
 use controller\Controller;
 
-// require_once 'model/Article.php';
-// require_once 'model/User.php';
-// require_once 'model/Comment.php';
-// require_once 'model/Media.php';
-// require_once 'controller/Controller.php';
 
 class articleController extends Controller
 {
 
-    function list() {
+    function list()
+    {
         $article = new Article();
         $articles = $article->getArticles();
 
@@ -66,7 +62,6 @@ class articleController extends Controller
         $comments = $comment->getArticleCommentsFull($articleId);
 
         $this->view->show('article/articleView.php.twig', ['article' => $article, 'media' => $media, 'comments' => $comments, 'success' => $success, 'pageTitle' => 'Articles']);
-
     }
 
     public function add($articleId)

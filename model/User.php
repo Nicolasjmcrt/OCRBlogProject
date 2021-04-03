@@ -14,7 +14,7 @@ class User extends Connect
 
         $dtb = $this->dbConnect();
         $req = $dtb->query('SELECT * FROM user ORDER BY user_id DESC');
-        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+        $result = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
 
@@ -26,7 +26,7 @@ class User extends Connect
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT comment.*, user.* FROM user INNER JOIN comment ON user.user_id=comment.user_id WHERE comment_id=?');
         $req->execute(array($commentId));
-        $user = $req->fetch(PDO::FETCH_ASSOC);
+        $user = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $user;
     }
@@ -37,7 +37,7 @@ class User extends Connect
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT * FROM user WHERE user_id = ?');
         $req->execute(array($userId));
-        $user = $req->fetch(PDO::FETCH_ASSOC);
+        $user = $req->fetch(\PDO::FETCH_ASSOC);
 
         return $user;
     }
@@ -48,7 +48,7 @@ class User extends Connect
         $dtb = $this->dbConnect();
         $req = $dtb->prepare("SELECT user_id, first_name FROM user WHERE role = 'Administrator' OR role = 'Author' ORDER BY user_id ASC");
         $req->execute(array($articleId));
-        $user = $req->fetchAll(PDO::FETCH_ASSOC);
+        $user = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $user;
     }
@@ -58,7 +58,7 @@ class User extends Connect
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT * FROM user WHERE login=? AND active_account=1');
         $req->execute(array($user));
-        $user = $req->fetch(PDO::FETCH_ASSOC);
+        $user = $req->fetch(\PDO::FETCH_ASSOC);
 
         if (!$user) {
             return false;
@@ -119,14 +119,14 @@ class User extends Connect
     public function checkToken($token)
     {
 
-        $date = new DateTime();
+        $date = new \DateTime();
 
         $date->modify('-7 days');
 
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('SELECT * FROM user WHERE token = ? AND token_date >= ?');
         $req->execute(array($token, $date->format('Y-m-d H:i:s')));
-        $check = $req->fetch(PDO::FETCH_ASSOC);
+        $check = $req->fetch(\PDO::FETCH_ASSOC);
 
         if (!$check) {
             return false;

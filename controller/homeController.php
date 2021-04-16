@@ -17,18 +17,18 @@ class homeController extends Controller
         $article = new Article();
         $articles = $article->getLastArticles();
 
-        $message = $_SESSION['message'];
+        $message = $this->session->getValue('message');
         $_SESSION['message'] = "";
         
 
-        if (!empty($_POST)) {
+        if (!empty($this->post->getPost())) {
             $email_to = "contact.coyotech@gmail.com";
             $email_subject = "Nouveau message Blog CoyoTech";
 
-            $nom = $_POST['lastname'];
-            $prenom = $_POST['firstname'];
-            $email = $_POST['email'];
-            $message_content = $_POST['message'];
+            $nom = $this->post->getValue('lastname');
+            $prenom = $this->post->getValue('firstname');
+            $email = $this->post->getValue('email');
+            $message_content = $this->post->getValue('message');
 
             $email_message = "Détail.\n\n";
             $email_message .= "Nom: " . $nom . "\n";

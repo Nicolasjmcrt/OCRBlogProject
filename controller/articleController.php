@@ -31,17 +31,14 @@ class articleController extends Controller
      */
     public function admin()
     {
-        // echo '<pre>';
-        // print_r($_SESSION);
-        // exit();
-        
+       
         if ($this->session->getValue('role') != 'Administrator' && $this->session->getValue('role') != 'Author') {
             $this->redirect('/blog-mvc');
         }
         $article = new Article();
         $articles = $article->getAllArticles();
         // TODO: Lire la variable de session message et l'envoyer à la vue
-        $message = $_SESSION['message'];
+        $message = $this->session->getValue('message');
 
         // TODO: Vider la variable de session message
         $_SESSION['message'] = "";

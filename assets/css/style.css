@@ -805,7 +805,6 @@ strong {
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-  /* backdrop-filter: blur(15px); */
 }
 
 .titre-user strong {

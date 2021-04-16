@@ -16,7 +16,7 @@ class userController extends Controller
     {
 
         $error = '';
-        $message = $_SESSION['message'];
+        $message = $this->session->getValue('message');
         $_SESSION['message'] = "";
 
         if (!empty($this->post->getPost())) {
@@ -140,7 +140,7 @@ class userController extends Controller
         if ($this->session->getValue('role') != 'Administrator') {
             $this->redirect('/blog-mvc');
         }
-        $message = $_SESSION['message'];
+        $message = $this->session->getValue('message');
         $this->view->show('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users', 'message' => $message]);
     }
 

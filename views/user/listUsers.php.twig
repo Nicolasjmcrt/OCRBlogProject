@@ -21,19 +21,19 @@
 
 {% block content %}
 
-	{% if message %}
-
-		<div class="col-10 col-lg-6 mx-auto alert alert-ok alert-dismissible text-center" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			{{ message }}
-		</div>
-
-	{% endif %}
 
 	<div class="container mt-5">
 		<h1 style="color: #fff; padding-top: 20px;" class="pt-5">Liste des utilisateurs</h1><br>
+		{% if message %}
+
+			<div class="col-10 col-lg-6 mx-auto alert alert-ok alert-dismissible text-center" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{ message }}
+			</div>
+
+		{% endif %}
 		<!--"table-striped" = tableau avec alternance dans Bootstrap-->
 		<div class="container">
 			<div class="row">

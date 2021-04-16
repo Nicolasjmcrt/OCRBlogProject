@@ -18,7 +18,7 @@ class homeController extends Controller
         $articles = $article->getLastArticles();
 
         $message = $this->session->getValue('message');
-        $_SESSION['message'] = "";
+        $this->session->setValue('message', "");
         
 
         if (!empty($this->post->getPost())) {
@@ -41,7 +41,7 @@ class homeController extends Controller
             'X-Mailer: PHP/' . phpversion();
             mail($email_to, $email_subject, $email_message, $headers);
 
-            $_SESSION['message'] = "Nous avons bien reçu votre message, nous reviendrons vers vous dans les plus brefs délais.";
+            $message = "Nous avons bien reçu votre message, nous reviendrons vers vous dans les plus brefs délais.";
         }
 
         $this->view->show('home/home.php.twig', ['articles' => $articles, 'pageTitle' => 'Home', 'message' => $message]);

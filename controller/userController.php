@@ -17,7 +17,7 @@ class userController extends Controller
 
         $error = '';
         $message = $this->session->getValue('message');
-        $_SESSION['message'] = "";
+        $this->session->setValue('message', "");
 
         if (!empty($this->post->getPost())) {
             $user = new User();
@@ -26,11 +26,11 @@ class userController extends Controller
 
                 if ($this->session->getValue('role') == 'Administrator' || $this->session->getValue('role') == 'Author') {
 
-                    $_SESSION['message'] = "Vous êtes bien connecté !";
+                    $this->session->setValue('message', "Vous êtes bien connecté !");
                     $this->redirect('/blog-mvc/article/admin');
 
                 }
-                $_SESSION['message'] = "Vous êtes bien connecté !";
+                $this->session->setValue('message', "Vous êtes bien connecté !");
                 $this->redirect('/blog-mvc');
 
             }
@@ -95,7 +95,7 @@ class userController extends Controller
 
                 $user->createVisitor($this->post->getPost());
 
-                $_SESSION['message'] = "Votre compte a bien été réservé. Vous recevrez bientôt un mail de confirmation. Dans le cas contraire, contactez-nous via le formulaire en page d'accueil.";
+                $this->session->setValue('message', "Votre compte a bien été réservé. Vous recevrez bientôt un mail de confirmation. Dans le cas contraire, contactez-nous via le formulaire en page d'accueil.");
                 $this->redirect('/blog-mvc/user/login');
             }
         }
@@ -135,12 +135,12 @@ class userController extends Controller
     function list() {
         $user = new User();
         $users = $user->getUsers();
-        $_SESSION['message'] ="";
 
         if ($this->session->getValue('role') != 'Administrator') {
             $this->redirect('/blog-mvc');
         }
         $message = $this->session->getValue('message');
+        $this->session->setValue('message', "");
         $this->view->show('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users', 'message' => $message]);
     }
 
@@ -161,7 +161,7 @@ class userController extends Controller
 
         if (!empty($this->post->getPost())) {
             $user->addUser($this->post->getPost());
-            $_SESSION['message'] = "Le nouvel utilisateur a bien été ajouté !";
+            $this->session->setValue('message', "Le nouvel utilisateur a bien été ajouté !");
             $this->redirect('/blog-mvc/user');
         }
 

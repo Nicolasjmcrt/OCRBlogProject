@@ -4,11 +4,14 @@ namespace model;
 
 use model\Connect;
 
-// require_once 'model/Connect.php';
-
 class User extends Connect
 {
 
+    /**
+     * requete en base de données pour affichage des utilisateurs (Back-end)
+     *
+     * @return void
+     */
     public function getUsers()
     {
 
@@ -17,10 +20,15 @@ class User extends Connect
         $result = $req->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
-
     }
 
-    public function getInvalidCommentsNickname($commentId)
+    /**
+     * requete en base de données pour affichage les auteurs des commentaires non validés en fonction de l'id du commentaire (Back-end)
+     *
+     * @param  int $commentId
+     * @return array
+     */
+    public function getInvalidCommentsNickname(int $commentId)
     {
 
         $dtb = $this->dbConnect();
@@ -31,7 +39,13 @@ class User extends Connect
         return $user;
     }
 
-    public function getUser($userId)
+    /**
+     * requete en base de données pour affichage un utilisateur en fonction de son id (Back-end)
+     *
+     * @param  int $userId
+     * @return array
+     */
+    public function getUser(int $userId)
     {
 
         $dtb = $this->dbConnect();
@@ -42,6 +56,12 @@ class User extends Connect
         return $user;
     }
 
+    /**
+     * requete en base de données pour affichage l'auteur d'un article (Back-end)
+     *
+     * @param  mixed $articleId
+     * @return array
+     */
     public function getAuthor($articleId)
     {
 
@@ -53,6 +73,13 @@ class User extends Connect
         return $user;
     }
 
+    /**
+     * requete pour verifier l'exactitude du login et du mot de passe d'un utilisateur lors de sa connexion
+     *
+     * @param  mixed $user
+     * @param  mixed $password
+     * @return array
+     */
     public function check($user, $password)
     {
         $dtb = $this->dbConnect();
@@ -85,6 +112,12 @@ class User extends Connect
         return false;
     }
 
+    /**
+     * fonction pour l'ajout en base de données d'un nouvel utilisateur lors de sa création
+     *
+     * @param  mixed $user
+     * @return array
+     */
     public function createVisitor($user)
     {
         $token = bin2hex(random_bytes(78));
@@ -95,8 +128,16 @@ class User extends Connect
 
         $req->execute(array($user['nickname'], $user['login'], $password, $token, date('Y-m-d H:i:s')));
 
-    }
+        $visitor = $user['nickname'];
 
+        mail($user['login'], "CoyoTech Blog - Confirmation de votre compte.", "Bonjour $visitor,\n\nVous avez demander à ouvrir un compte sur CoyoTech Blog. Vous trouverez ci-dessous un lien vous permettant de finaliser votre inscription.\n\nhttp://localhost:8888/blog-mvc/user/confirm/$token\n\nSi le lien ci-dessus ne fonctionne pas, vous pouvez copier / coller cette adresse directement dans la barre d'adresse de votre navigateur internet afin de finaliser votre inscription.");
+    }
+    
+    /**
+     * requete servant à vérifier si un pseudo est déjà utilisé
+     *
+     * @return void
+     */
     public function checkNickname()
     {
 
@@ -105,7 +146,12 @@ class User extends Connect
         $req->execute([$_POST['nickname']]);
         return $req->fetch();
     }
-
+    
+    /**
+     * requete servant à vérifier si un pseudo est déjà utilisé
+     *
+     * @return void
+     */
     public function checkLogin()
     {
 
@@ -113,9 +159,14 @@ class User extends Connect
         $req = $dtb->prepare('SELECT user_id FROM user WHERE login = ?');
         $req->execute([$_POST['login']]);
         return $req->fetch();
-
     }
-
+    
+    /**
+     * requete servant à vérifier si le lien token sur lequel l'utilisateur vient de cliquer est toujours valide. Si ok la base est mise à jour (token effacé)
+     *
+     * @param  mixed $token
+     * @return array
+     */
     public function checkToken($token)
     {
 
@@ -136,9 +187,14 @@ class User extends Connect
         $req->execute(array($token));
 
         return true;
-
     }
-
+    
+    /**
+     * requete préparant la base de données à ajouter un nouvel utilisateur depuis le Back-end
+     *
+     * @param  mixed $user
+     * @return array
+     */
     public function addUser($user)
     {
 
@@ -148,7 +204,13 @@ class User extends Connect
 
         $req->execute(array($user['firstname'], $user['lastname'], $user['nickname'], $user['login'], $user['email'], $password, $user['role'], $user['activeaccount']));
     }
-
+    
+    /**
+     * requete préparant la base de données à être mise à jour suite à la modification d'un utilisateur depuis le Back-end
+     *
+     * @param  mixed $user
+     * @return array
+     */
     public function editUser($user)
     {
 
@@ -166,7 +228,13 @@ class User extends Connect
             $req->execute(array(password_hash($user['password'], PASSWORD_BCRYPT), $user['userId']));
         }
     }
-
+    
+    /**
+     * requete préparant la base de données à être mise à jour suite à la suppression d'un utilisateur depuis le Back-end
+     *
+     * @param  int $userId
+     * @return array
+     */
     public function delete($userId)
     {
 

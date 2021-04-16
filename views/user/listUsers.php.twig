@@ -2,131 +2,150 @@
 
 {% block title %}
 
-    <title>CoyoTech | Utilisateurs</title>
+	<title>CoyoTech | Utilisateurs</title>
 
 {% endblock %}
 
 {% block head %}
 
-    {{parent()}}
+	{{parent()}}
 
 {% endblock %}
 
 {% block header %}
 
-        {{parent()}}
-	
+	{{parent()}}
+
 
 {% endblock %}
 
 {% block content %}
 
-    <div class="container mt-5">
-        <h1 style="color: #fff; padding-top: 20px;" class="pt-5">Liste des utilisateurs</h1><br>
-        <!--"table-striped" = tableau avec alternance dans Bootstrap-->
-        <div class="container">
-        <div class="row">
-            <div class="col table-responsive">
-                <table class="table table-light table-striped table-hover table-sm">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col" class="text-center">Nom</th>
-                            <th scope="col" class="text-center">Prénom</th>
-                            <th scope="col" class="text-center">Pseudo</th>
-                            <th scope="col" class="text-center">Compte actif</th>
-                            <th scope="col" class="text-center">Rôle</th>
-                            <th scope="col" class="text-center">Modifier</th>
-                            <th scope="col" class="text-center">Supprimer</th>
-                        </tr>
-                    </thead>
-                    <!--Remplissage du tableau à l'aide de la bdd-->
-                    {% for user in users %}
-                    <tbody class="tbody-light">
-                        <tr>
-                            <td class="text-center"><strong>{{ user.last_name }}</strong></td>
-                            <td class="text-center"><strong>{{ user.first_name }}</strong></td>
-                            <td class="text-center text-primary text-nickname">{{ user.nickname }}</td>
-                            <td class="text-center"><span class="badge {{ user.active_account ?'badge-success':'badge-danger' }}">{{ user.active_account ?'oui':'non' }}</span>
-                            </td>
-                            <td class="text-center">
-                            {% if user.role == 'Administrator' %}
-                                <span class="badge badge-success">{{ user.role }}</span>
-                            {% elseif user.role == 'Author' %}
-                                <span class="badge badge-warning">{{ user.role }}</span>
-                            {% else %}
-                                <span class="badge badge-danger">{{ user.role }}</span>
-                            {% endif %}
-                            </td>
-                            <td class="text-center">
-                            <!--Renvoi vers la page modifier-->
-                                <a href="/blog-mvc/user/edit/{{ user.user_id }}"><img src="/blog-mvc/assets/images/pen.png" style="width: 25px;" alt=""></a>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="trash-btn" data-toggle="modal" data-target="#myModal" rel="{{ user.user_id }}" title="{{ user.nickname }}"><img src="/blog-mvc/assets/images/trash.png" style="width: 23px;" alt="">
-                                </button>
-                            </td>
-                        </tr>
-                    <!--fermeture du for-->
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+	{% if message %}
 
-<!--Création de la "modal" à l'aide de Bootstrap-->
+		<div class="col-10 col-lg-6 mx-auto alert alert-ok alert-dismissible text-center" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ message }}
+		</div>
+
+	{% endif %}
+
+	<div class="container mt-5">
+		<h1 style="color: #fff; padding-top: 20px;" class="pt-5">Liste des utilisateurs</h1><br>
+		<!--"table-striped" = tableau avec alternance dans Bootstrap-->
+		<div class="container">
+			<div class="row">
+				<div class="col table-responsive">
+					<table class="table table-light table-striped table-hover table-sm">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col" class="text-center align-middle">Nom</th>
+								<th scope="col" class="text-center align-middle">Prénom</th>
+								<th scope="col" class="text-center align-middle">Pseudo</th>
+								<th scope="col" class="text-center align-middle">Compte actif</th>
+								<th scope="col" class="text-center align-middle">Rôle</th>
+								<th scope="col" class="text-center align-middle">Modifier</th>
+								<th scope="col" class="text-center align-middle">Supprimer</th>
+							</tr>
+						</thead>
+						<!--Remplissage du tableau à l'aide de la bdd-->
+						{% for user in users %}
+							<tbody class="tbody-light">
+								<tr>
+									<td class="text-center align-middle">
+										<strong>{{ user.last_name }}</strong>
+									</td>
+									<td class="text-center align-middle">
+										<strong>{{ user.first_name }}</strong>
+									</td>
+									<td class="text-center align-middle text-primary text-nickname">{{ user.nickname }}</td>
+									<td class="text-center align-middle">
+										<span class="badge {{ user.active_account ?'badge-success':'badge-danger' }}">{{ user.active_account ?'oui':'non' }}</span>
+									</td>
+									<td class="text-center">
+										{% if user.role == 'Administrator' %}
+											<span class="badge badge-success">{{ user.role }}</span>
+										{% elseif user.role == 'Author' %}
+											<span class="badge badge-warning">{{ user.role }}</span>
+										{% else %}
+											<span class="badge badge-danger">{{ user.role }}</span>
+										{% endif %}
+									</td>
+									<td
+										class="text-center align-middle">
+										<!--Renvoi vers la page modifier-->
+										<a href="/blog-mvc/user/edit/{{ user.user_id }}"><img src="/blog-mvc/assets/images/pen.png" style="width: 25px;" alt=""></a>
+									</td>
+									<td class="text-center align-middle">
+										<button type="button" class="trash-btn" data-toggle="modal" data-target="#myModal" rel="{{ user.user_id }}" title="{{ user.nickname }}"><img src="/blog-mvc/assets/images/trash.png" style="width: 23px;" alt="">
+										</button>
+									</td>
+								</tr>
+								<!--fermeture du for-->
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Création de la "modal" à l'aide de Bootstrap-->
 
 
-  <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Supprimer un utilisateur ?</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Voulez vous supprimer l'utilisateur suivant ?</p>
-          <p class="titre-user"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-          <!--ajout de la classe btn-url-supp sur le lien du bouton-->
-          <a href="/blog-mvc/user/delete/{{ user.user_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer l'utilisateur</a>
-        </div><!-- /.modal-footer -->
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Supprimer un utilisateur ?</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Voulez vous supprimer l'utilisateur suivant ?</p>
+					<p class="titre-user"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+					<!--ajout de la classe btn-url-supp sur le lien du bouton-->
+					<a href="/blog-mvc/user/delete/{{ user.user_id }}" type="button" class="btn btn-danger btn-url-supp">Supprimer l'utilisateur</a>
+				</div>
+				<!-- /.modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
 {% endblock %}
 
 {% block footer %}
 
-    {{parent()}}
+	{{parent()}}
 
 {% endblock %}
 
 {% block scripts %}
 
-    {{parent()}}
-    <script type="text/javascript">
-    $(document).ready(function(){
-    /*fonction au clic de la classe btn-supp*/
-      $('.trash-btn').click(function(){
-      /*définition de la valeur à supprimer*/
-        valsupp=$(this).attr('rel');
-        /*défintion du titre*/
-        titre=$(this).attr('title');
-        /*titre à afficher en "strong" à l'apparition du modal*/
-        $('.titre-user').html('<strong>'+titre+'</strong>');
-        /*définition de l'url a afficher*/
-        url='/blog-mvc/User/delete/'+valsupp;
-        /*quand suppression confirmée, retour à l'url prédéfinie*/
-        $('.btn-url-supp').attr('href',url);
-      });
-    });
-    </script>
+	{{parent()}}
+	<script type="text/javascript">
+		$(document).ready(function () { /*fonction au clic de la classe btn-supp*/
+$('.trash-btn').click(function () { /*définition de la valeur à supprimer*/
+valsupp = $(this).attr('rel');
+/*défintion du titre*/
+titre = $(this).attr('title');
+/*titre à afficher en "strong" à l'apparition du modal*/
+$('.titre-user').html('<strong>' + titre + '</strong>');
+/*définition de l'url a afficher*/
+url = '/blog-mvc/User/delete/' + valsupp;
+/*quand suppression confirmée, retour à l'url prédéfinie*/
+$('.btn-url-supp').attr('href', url);
+});
+});
+	</script>
 
 {% endblock %}

@@ -2,17 +2,17 @@
 
 namespace controller;
 
-use model\Comment;
-use model\Article;
 use controller\Controller;
-
-// require_once 'model/Comment.php';
-// require_once 'model/Article.php';
-// require_once 'controller/Controller.php';
+use model\Comment;
 
 class commentController extends Controller
 {
 
+    /**
+     * affiche la liste des commentaires en attente de validation
+     *
+     * @return void
+     */
     function list() {
 
         $comment = new Comment();
@@ -30,15 +30,13 @@ class commentController extends Controller
 
     }
 
-    public function view($commentId)
-    {
-        $comment = new Comment();
-
-        echo '<pre>';
-        print_r($comment->getComment($commentId));
-    }
-
-    public function validate($commentId)
+    /**
+     * permet la validation d'un commentaire par l'administrateur
+     *
+     * @param  int $commentId
+     * @return void
+     */
+    public function validate(int $commentId)
     {
         $comment = new Comment();
         $comment->validate($commentId);
@@ -47,10 +45,16 @@ class commentController extends Controller
             $this->redirect('/blog-mvc');
         }
 
-        $this->redirect('/blog-mvc/Comment');
+        $this->redirect('/blog-mvc/comment');
     }
 
-    public function delete($commentId)
+    /**
+     * permet la suppression d'un commentaire par l'administrateur
+     *
+     * @param  int $commentId
+     * @return void
+     */
+    public function delete(int $commentId)
     {
         $comment = new Comment();
         $comment->delete($commentId);
@@ -59,7 +63,7 @@ class commentController extends Controller
             $this->redirect('/blog-mvc');
         }
 
-        $this->redirect('/blog-mvc/Comment');
+        $this->redirect('/blog-mvc/comment');
     }
 
 }

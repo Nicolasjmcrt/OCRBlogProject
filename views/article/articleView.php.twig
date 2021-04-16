@@ -1,10 +1,10 @@
 {% extends 'common/template.php.twig' %}
 
 
-
 {% block title %}
 
-	<title>CoyoTech Blog | {{ article.title }}</title>
+	<title>CoyoTech Blog |
+		{{ article.title }}</title>
 
 {% endblock %}
 {% block head %}
@@ -20,92 +20,106 @@
 {% endblock %}
 
 {% block content %}
-	
+
 	<div style="background-color: #fff;" class="container pt-5">
-	<div class="row pt-5">
-		<div class="col-12 av-container">
-		{% if success %}
-        
-        <div class="col-6 mx-auto alert alert-ok text-center" role="alert">
-            {{ success }}
-        </div>
-        
-    {% endif %}
-			<h4 class="col-md-8 mx-auto text-center ap-title mt-5">{{ article.title }}</h4>
-			<h1 class="col-md-8 mx-auto text-center ap-intro">{{ article.intro}}</h1>
-			<p class="col-md-8 mx-auto text-center ap-author-date pb-5"><span>{{ article.first_name }} {{ article.last_name }}</span> / Mis à jour le {{ article.update_date|date("d/m/Y") }}</p>
-			<h2 class="col-md-8 mx-auto ap-2nd-intro pb-5">{{ article.catchphrase }}</h2>
-			<img src="/blog-mvc/{{ media.file_name }}" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="Grand visuel article {{ article.article_id }}">
-			<div class="col-md-8 mx-auto">
-			{% autoescape %}
-				<p class="ap-text">{{ article.content|raw }}</p>
-			{% endautoescape %}
-				
-			
-			</div>
+		<div class="row pt-5">
+			<div class="col-12 av-container">
+				{% if success %}
 
-			
-			<div class="col-md-8 pt-3 pb-1 mt-5 mb-2 mx-auto comment-title">
-				<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Commentaires</h3>
-			</div>
-			<div class="col-md-8 mx-auto comment-list">
-				<ol class="comment-ol">
-					{% for comment in comments %}
-						<li>
-						<div class="comment-body pt-4">
-							<div class="author-date-comment pb-2">
-							
-								<div class="comment-author">{{ comment.nickname }} &nbsp;</div>
-							
-								<div class="comment-date"> le {{ comment.comment_date|date("d/m/Y à H:i:s") }}</div>
-							</div>
-							<p class="comment-content pb-3">{{ comment.content }}</p>
-						</div>
-					</li>
-					{% endfor %}
-				</ol>
-			</div>
-			{% if session.role is empty %}
+					<div class="col-6 mx-auto alert alert-ok alert-dismissible text-center" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						{{ success }}
+					</div>
 
-			<div class="col-8 mx-auto mt-5 mb-5 pt-2 pb-2 to-login">
-				<a href="/blog-mvc/user/login" class="comment-reply-title pt-2 pb-2"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Publier un commentaire</a>
-			</div>
-
-			{% else %}
-				
-			<div class="col-md-8 mx-auto commentform-container">
-				<div class="col-md-11 mx-auto pt-4 pb-4">
-					<h3 id="reply-title" class="comment-reply-title"><span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
-					<form action="" method="post" class="commentform">
-						<p class="comment-notes">
-							<span id="email-notes">Votre commentaire sera publié après validation de l'administrateur du blog.
-						</p>
-						<div class="row">
-							<div class="form-group col-12">
-								<textarea class="form-control comments-textarea" placeholder="Commentaire*" name="content" id="content" rows="4"></textarea>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group">
-								<input style="display: none; width: 0px;" class="comment-input comment-author" id="articleId" name="articleId" type="text" value="{{ article.article_id }}" required="required">
-								<input style="display: none; width: 0px;" class="comment-input comment-author" id="userId" name="userId" type="text" value="{{ session.user_id }}" required="required">
-							</div>
-							<div class="form-group col-md-6 mx-auto">
-								<input class="comment-submit" id="submit" name="submit" type="submit" value="Laisser un commentaire">
-							</div>
-						</div>
-					</form>
-				</div>
 				{% endif %}
-			</div>
-			<div class="col-8 mx-auto align-link mb-5">
-				<div class="all-articles-link">
-					<a href="/blog-mvc/article/" alt="">Voir tous les articles</a>
+				<h4 class="col-md-8 mx-auto text-center ap-title mt-5">{{ article.title }}</h4>
+				<h1 class="col-md-8 mx-auto text-center ap-intro">{{ article.intro}}</h1>
+				<p class="col-md-8 mx-auto text-center ap-author-date pb-5">
+					<span>{{ article.first_name }}
+						{{ article.last_name }}</span>
+					/ Mis à jour le
+					{{ article.update_date|date("d/m/Y") }}</p>
+				<h2 class="col-md-8 mx-auto ap-2nd-intro pb-5">{{ article.catchphrase }}</h2>
+				<img src="/blog-mvc/{{ media.file_name }}" class="col-md-8 img-fluid mx-auto d-block article-hero-img mb-5" alt="Grand visuel article {{ article.article_id }}">
+				<div class="col-md-8 mx-auto">
+					{% autoescape %}
+						<p class="ap-text">{{ article.content|raw }}</p>
+					{% endautoescape %}
+
+
+				</div>
+
+
+				<div class="col-md-8 pt-3 pb-1 mt-5 mb-2 mx-auto comment-title">
+					<h3 id="reply-title" class="comment-reply-title">
+						<span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Commentaires</h3>
+				</div>
+				<div class="col-md-8 mx-auto comment-list">
+					<ol class="comment-ol">
+						{% for comment in comments %}
+							<li>
+								<div class="comment-body pt-4">
+									<div class="author-date-comment pb-2">
+
+										<div class="comment-author">{{ comment.nickname }}
+											&nbsp;</div>
+
+										<div class="comment-date">
+											le
+											{{ comment.comment_date|date("d/m/Y à H:i:s") }}</div>
+									</div>
+									<p class="comment-content pb-3">{{ comment.content }}</p>
+								</div>
+							</li>
+						{% endfor %}
+					</ol>
+				</div>
+				{% if session.role is empty %}
+
+					<div class="col-8 mx-auto mt-5 mb-5 pt-2 pb-2 to-login">
+						<a href="/blog-mvc/user/login" class="comment-reply-title pt-2 pb-2">
+							<span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Publier un commentaire</a>
+					</div>
+
+				{% else %}
+
+					<div class="col-md-8 mx-auto commentform-container">
+						<div class="col-md-11 mx-auto pt-4 pb-4">
+							<h3 id="reply-title" class="comment-reply-title">
+								<span><img class="comment-icon pr-3" src="/blog-mvc/assets/images/comment-icon.png" alt=""></span>Laisser un commentaire</h3>
+							<form action="" method="post" class="commentform">
+								<p class="comment-notes">
+									<span id="email-notes">Votre commentaire sera publié après validation de l'administrateur du blog.
+									</p>
+									<div class="row">
+										<div class="form-group col-12">
+											<textarea class="form-control comments-textarea" placeholder="Commentaire*" name="content" id="content" rows="4"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group">
+											<input style="display: none; width: 0px;" class="comment-input comment-author" id="articleId" name="articleId" type="text" value="{{ article.article_id }}" required="required">
+											<input style="display: none; width: 0px;" class="comment-input comment-author" id="userId" name="userId" type="text" value="{{ session.user_id }}" required="required">
+										</div>
+										<div class="form-group col-md-6 mx-auto">
+											<input class="comment-submit" id="submit" name="submit" type="submit" value="Laisser un commentaire">
+										</div>
+									</div>
+								</p>
+							</form>
+						</div>
+					{% endif %}
+				</div>
+				<div class="col-8 mx-auto align-link mb-5">
+					<div class="all-articles-link">
+						<a href="/blog-mvc/article/" alt="">Voir tous les articles</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 {% endblock %}
 

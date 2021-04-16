@@ -2,187 +2,211 @@
 
 namespace controller;
 
-use model\User;
 use controller\Controller;
-
-// require_once 'model/User.php';
-// require_once 'controller/Controller.php';
-
+use model\User;
 
 class userController extends Controller
 {
-	public function login() {	
-		
-		$error ='';
-		$success='';
+    /**
+     * gestion de connexion des utilisateurs
+     *
+     * @return void
+     */
+    public function login()
+    {
 
-		if(! empty($this->post->getPost())) {
-			$user = new User();
+        $error = '';
+        $message = $_SESSION['message'];
+        $_SESSION['message'] = "";
 
-			if($user->check($this->post->getValue('login'), $this->post->getValue('password'))) {
-				
-				
+        if (!empty($this->post->getPost())) {
+            $user = new User();
 
-				
-				if($this->session->getValue('role') == 'Administrator' || $this->session->getValue('role') == 'Author') {
-					
-					$this->redirect('/blog-mvc/Article/admin');
-					$success = 'Vous êtes bien connecté !';
-					
-				}
-				$this->redirect('/blog-mvc');
-				$success = 'Vous êtes bien connecté !';
-				
-			}
-			$error = 'Il y a une erreur dans le login ou le mot de passe !
+            if ($user->check($this->post->getValue('login'), $this->post->getValue('password'))) {
+
+                if ($this->session->getValue('role') == 'Administrator' || $this->session->getValue('role') == 'Author') {
+
+                    $_SESSION['message'] = "Vous êtes bien connecté !";
+                    $this->redirect('/blog-mvc/article/admin');
+
+                }
+                $_SESSION['message'] = "Vous êtes bien connecté !";
+                $this->redirect('/blog-mvc');
+
+            }
+            $error = 'Il y a une erreur dans le login ou le mot de passe !
 			Avez-vous pensé à valider votre compte ?';
-		}
+        }
 
-		$this->view->show('login/login.php.twig', ['error' => $error, 'success' => $success]);
+        $this->view->show('login/login.php.twig', ['error' => $error, 'message' => $message]);
+    }
 
-		
+    /**
+     * gestion de déconnexion des utilisateurs
+     *
+     * @return void
+     */
+    public function logout()
+    {
 
-	}
+        $this->session->reset();
 
-	public function logout() {
+        $this->redirect('/blog-mvc');
+    }
 
-		$this->session->reset();
+    /**
+     * gestion de l'inscription des utilisateurs
+     *
+     * @return void
+     */
+    public function register()
+    {
 
-		$this->redirect('/blog-mvc');
+        $error = array();
 
-	}
+        if (!empty($this->post->getPost())) {
+            $user = new User();
 
+            if (empty($this->post->getValue('nickname')) || !preg_match('/[a-zA-Z0-9_]+$/', $this->post->getValue('nickname'))) {
 
-	public function register() {
-		
-		$error = array();
+                $error = "Votre pseudo n'est pas valide ! Seuls les lettres minuscules et majuscules, les chiffres et le tiret underscore (_) sont autorisés.";
+            } else {
+                if ($user->checkNickname($user)) {
 
-		if(!empty($this->post->getPost())) {
-			$user = new User();
+                    $error = "Ce pseudo est déjà utilisé !";
+                }
+            }
 
-			if(empty($this->post->getValue('nickname')) || !preg_match('/[a-zA-Z0-9_]+$/', $this->post->getValue('nickname'))) {
+            if (empty($this->post->getValue('login')) || !filter_var($this->post->getValue('login'), FILTER_VALIDATE_EMAIL)) {
 
-				$error = "Votre pseudo n'est pas valide ! Seuls les lettres minuscules et majuscules, les chiffres et le tiret underscore (_) sont autorisés.";
-			} else {
-				if($user->checkNickname($user)) {
-				
-					$error = "Ce pseudo est déjà utilisé !";
-				}
-			}
+                $error = "Votre e-mail n'est pas valide !";
+            }
+            if ($user->checkLogin($user)) {
 
-			if(empty($this->post->getValue('login')) || !filter_var($this->post->getValue('login'), FILTER_VALIDATE_EMAIL)) { 
-			
-				$error = "Votre e-mail n'est pas valide !";
-			}
-			if($user->checkLogin($user)) {
-				
-				$error = "Ce Login est déjà utilisé !";
-			}
+                $error = "Ce Login est déjà utilisé !";
+            }
 
-			if(empty($this->post->getValue('password')) || $this->post->getValue('password') != $this->post->getValue('password_confirm')) {
+            if (empty($this->post->getValue('password')) || $this->post->getValue('password') != $this->post->getValue('password_confirm')) {
 
-				$error = "Vous devez saisir un mot de passe valide !";
-			}
+                $error = "Vous devez saisir un mot de passe valide !";
+            }
 
-			if(empty($error)) {
+            if (empty($error)) {
 
-				$user->createVisitor($this->post->getPost());
+                $user->createVisitor($this->post->getPost());
 
-				$this->redirect('/blog-mvc/User/login');
-			}
-		}
+                $_SESSION['message'] = "Votre compte a bien été réservé. Vous recevrez bientôt un mail de confirmation. Dans le cas contraire, contactez-nous via le formulaire en page d'accueil.";
+                $this->redirect('/blog-mvc/user/login');
+            }
+        }
 
-		$this->view->show('register/register.php.twig', ['error' => $error]);
-	}
+        $this->view->show('register/register.php.twig', ['error' => $error]);
+    }
 
+    /**
+     * gestion de la validation des comptes utilisateurs
+     *
+     * @param  mixed $token
+     * @return void
+     */
+    public function confirm($token)
+    {
 
+        $user = new User();
+        $error = '';
+        $success = '';
 
-	public function confirm($token) {
+        if ($user->checkToken($token)) {
 
+            $success = 'Félicitations, votre compte a bien été validé !';
+        } else {
 
-		$user = new User();
-		$error = '';
-		$success = '';
+            $error = "Une erreur s'est produite pendant la création de votre compte.";
+        }
 
-		if($user->checkToken($token)) {
+        $this->view->show('confirm/confirm.php.twig', ['user' => $user, 'error' => $error, 'success' => $success]);
+    }
 
-			$success = 'Félicitations, votre compte a bien été validé !';
+    /**
+     * affichage de la liste des utilisateurs (Back-end)
+     *
+     * @return void
+     */
+    function list() {
+        $user = new User();
+        $users = $user->getUsers();
+        $_SESSION['message'] ="";
 
-		} else {
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
+        $message = $_SESSION['message'];
+        $this->view->show('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users', 'message' => $message]);
+    }
 
-			$error = "Une erreur s'est produite pendant la création de votre compte.";
-		}
+    /**
+     * fonction d'ajout d'un utilisateur avec création d'un id
+     *
+     * @param  int $user
+     * @return void
+     */
+    public function add($user)
+    {
 
-		$this->view->show('confirm/confirm.php.twig', ['user' => $user, 'error' => $error, 'success' => $success]);
-	}
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
 
+        $user = new User();
 
+        if (!empty($this->post->getPost())) {
+            $user->addUser($this->post->getPost());
+            $_SESSION['message'] = "Le nouvel utilisateur a bien été ajouté !";
+            $this->redirect('/blog-mvc/user');
+        }
 
-	public function list() {
-		$user = new User();
-		$users = $user->getUsers();
+        $this->view->show('user/addUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
+    }
 
-		if ($this->session->getValue('role') != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
+    /**
+     * fonction de modification d'un utilisateur à l'aide de son id
+     *
+     * @param  int $userId
+     * @return void
+     */
+    public function edit(int $userId)
+    {
 
-		$this->view->show('user/listUsers.php.twig', ['users' => $users, 'pageTitle' => 'Users']);
-	}
-	
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
 
+        $User = new User();
+        $user = $User->getUser($userId);
 
-	public function add($user) {
+        if (!empty($this->post->getPost())) {
+            $User->editUser($this->post->getPost());
+            $this->redirect('/blog-mvc/user');
+        }
+        $this->view->show('user/editUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
+    }
 
-		if ($this->session->getValue('role') != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
+    /**
+     * fonction de suppression d'un utilisateur à l'aide de son id
+     *
+     * @param  int $userId
+     * @return void
+     */
+    public function delete(int $userId)
+    {
 
-		$user = new User();
-		
-		if(!empty($this->post->getPost())) {
-			$user->addUser($this->post->getPost());
-			$this->redirect('/blog-mvc/User');
-		}
-		
-		$this->view->show('user/addUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
+        if ($this->session->getValue('role') != 'Administrator') {
+            $this->redirect('/blog-mvc');
+        }
 
-	}
+        $User = new User();
+        $User->delete($userId);
 
-
-	public function edit($userId) {
-
-		if ($this->session->getValue('role') != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
-
-		$User = new User();
-		$user = $User->getUser($userId);
-
-		
-
-		if(!empty($this->post->getPost())) {
-			$User->editUser($this->post->getPost());
-			$this->redirect('/blog-mvc/User');
-		}
-		$this->view->show('user/editUser.php.twig', ['user' => $user, 'pageTitle' => 'Users']);
-		
-	}
-
-	public function delete($userId) {
-
-		if ($this->session->getValue('role') != 'Administrator') {
-			$this->redirect('/blog-mvc');
-		}
-		
-		$User = new User();
-		$User->delete($userId);
-
-		
-
-		$this->redirect('/blog-mvc/User');
-	}
+        $this->redirect('/blog-mvc/user');
+    }
 }
-
-
-
- ?>

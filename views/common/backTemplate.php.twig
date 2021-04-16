@@ -35,29 +35,29 @@ session_start();
 					  <li class="nav-item dropdown {% if pageTitle == 'BackArticles' %} : active{% endif %}">
         				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Articles</a>
         				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="/blog-mvc/Article/add/">Ajouter un article</a>
-          				<a class="dropdown-item" href="/blog-mvc/Article/admin">Liste des articles</a>
+          				<a class="dropdown-item" href="/blog-mvc/article/add/">Ajouter un article</a>
+          				<a class="dropdown-item" href="/blog-mvc/article/admin">Liste des articles</a>
         				</div>
       				</li>
       				<li class="nav-item dropdown {% if pageTitle == 'Comments' %} : active{% endif %}">
         				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Commentaires</a>
         				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="/blog-mvc/Comment/">Liste des commentaires</a>
+          				<a class="dropdown-item" href="/blog-mvc/comment/">Liste des commentaires</a>
         				</div>
       				</li>
       				<li class="nav-item dropdown {% if pageTitle == 'Users' %} : active{% endif %}">
         				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utilisateurs</a>
         				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="/blog-mvc/User/add/">Ajouter un utilisateur</a>
-          				<a class="dropdown-item" href="/blog-mvc/User/">Liste des utilisateurs</a>
+          				<a class="dropdown-item" href="/blog-mvc/user/add/">Ajouter un utilisateur</a>
+          				<a class="dropdown-item" href="/blog-mvc/user/">Liste des utilisateurs</a>
         				</div>
       				</li>
 					{% else %}
 					<li class="nav-item dropdown {% if pageTitle == 'BackArticles' %} : active{% endif %}">
         				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Articles</a>
         				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="/blog-mvc/Article/add/">Ajouter un article</a>
-          				<a class="dropdown-item" href="/blog-mvc/Article/admin">Liste des articles</a>
+          				<a class="dropdown-item" href="/blog-mvc/article/add/">Ajouter un article</a>
+          				<a class="dropdown-item" href="/blog-mvc/article/admin">Liste des articles</a>
         				</div>
       				</li>
 					{% endif %}

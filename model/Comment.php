@@ -4,11 +4,14 @@ namespace model;
 
 use model\Connect;
 
-// require_once 'model/Connect.php';
-
 class Comment extends Connect
 {
-
+    
+    /**
+     * requête en base de données pour afficher les commentaires non validés
+     *
+     * @return void
+     */
     public function getInvalidComments()
     {
 
@@ -17,8 +20,14 @@ class Comment extends Connect
         $result = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
-
-    public function getArticleCommentsFull($articleId)
+    
+    /**
+     * requête en base de données pour afficher tous les commentaires d'un article à l'aide son id
+     *
+     * @param  int $articleId
+     * @return void
+     */
+    public function getArticleCommentsFull(int $articleId)
     {
 
         $dtb = $this->dbConnect();
@@ -29,7 +38,13 @@ class Comment extends Connect
         return $comments;
 
     }
-
+    
+    /**
+     * requête pour préparer la base de données pour ajouter un commentaire concernant un article et en lui créant un id
+     *
+     * @param  int $comment
+     * @return void
+     */
     public function addComment($comment)
     {
 
@@ -44,16 +59,28 @@ class Comment extends Connect
         $req->execute(array($comment['content'], date('Y-m-d H:i:s'), $user, $article));
 
     }
-
-    public function validate($commentId)
+    
+    /**
+     * requête pour mettre à jour la base de données suite à la validation d'un commentaire grâce à son id
+     *
+     * @param  int $commentId
+     * @return void
+     */
+    public function validate(int $commentId)
     {
 
         $dtb = $this->dbConnect();
         $req = $dtb->prepare('UPDATE comment SET validation=1 WHERE comment_id = ?');
         $req->execute(array($commentId));
     }
-
-    public function delete($commentId)
+    
+    /**
+     * requête pour mettre à jour la base de données suite à la suppression d'un commentaire grâce à son id
+     *
+     * @param  int $commentId
+     * @return void
+     */
+    public function delete(int $commentId)
     {
 
         $dtb = $this->dbConnect();

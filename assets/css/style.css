@@ -6,6 +6,10 @@ body {
   color: #858585;
 }
 
+body a {
+  color: #986dff;
+}
+
 strong {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 20px;
@@ -28,7 +32,7 @@ strong {
 
 .navbar-blog {
   background-color: #201d1d;
-  border-bottom: 2px solid #11b5e4;
+  border-bottom: 2px solid #986dff;
 }
 
 .navbar-title {
@@ -36,7 +40,7 @@ strong {
   font-size: 30px;
   font-weight: 100;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .navbar-title span {
@@ -60,12 +64,13 @@ strong {
   font-weight: 300;
   letter-spacing: -1px;
   text-transform: uppercase;
-  color: #11b5e4;
+  color: #986dff;
   transition: 200ms;
 }
 
 .account-link:hover {
   font-weight: 500;
+  color: #986dff;
 }
 
 .account-links {
@@ -80,7 +85,7 @@ strong {
 }
 
 .account-links:hover {
-  background-color: rgba(17, 181, 228, 0.7);
+  background-color: rgba(129, 78, 250, 0.7);
 }
 
 .navbar-nav a {
@@ -89,13 +94,13 @@ strong {
   font-weight: 300;
   letter-spacing: -1px;
   text-transform: uppercase;
-  color: #11b5e4;
+  color: #986dff;
   transition: 200ms;
 }
 
 .navbar-nav a:hover {
   font-weight: 500;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .navbar-nav .active > .nav-link {
@@ -109,13 +114,13 @@ strong {
   font-weight: 300;
   letter-spacing: -1px;
   text-transform: uppercase;
-  color: #11b5e4;
+  color: #986dff;
   transition: 200ms;
 }
 
 .logout-link:hover {
   font-weight: 500;
-  color: #11b5e4;
+  color: #986dff;
   text-decoration: none;
 }
 
@@ -126,7 +131,7 @@ strong {
 
 .nickname {
   font-weight: 600;
-  color: #11b5e4;
+  color: #986dff;
   padding-right: 30px;
   margin-bottom: 0;
 }
@@ -140,22 +145,23 @@ strong {
 }
 
 .navbar-toggler {
-  border: 1px solid #11b5e4;
+  border: 1px solid #986dff;
 }
 
 /* ---------------------------------------HOME SECTION (MEDIA AND TITLE)------------------------------------------------ */
 
 .container-media-title {
-  background-color: #11b5e4;
+  background-color: #986dff;
 }
 
-.container-media-title h3 {
+.container-media-title h1 {
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 500;
   letter-spacing: -1px;
   color: #201d1d;
   text-align: center;
+  padding-top: 15px;
 }
 
 .media-title {
@@ -213,7 +219,7 @@ strong {
 .title-cv {
   font-family: "Big Shoulders Display", cursive;
   font-weight: 700;
-  color: #11b5e4;
+  color: #986dff;
   font-size: 25px;
   letter-spacing: -1px;
   text-align: center;
@@ -248,7 +254,7 @@ strong {
 .last-articles-title h2 {
   font-family: "Big Shoulders Display", cursive;
   font-weight: 700;
-  color: #11b5e4;
+  color: #986dff;
   font-size: 55px;
   letter-spacing: -2px;
   text-align: center;
@@ -263,7 +269,7 @@ strong {
 .last-articles-section h2 {
   font-family: "Big Shoulders Display", cursive;
   font-weight: 700;
-  color: #11b5e4;
+  color: #986dff;
   font-size: 75px;
   letter-spacing: -3px;
   text-align: center;
@@ -327,7 +333,7 @@ strong {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
   text-transform: uppercase;
   padding-top: 20px;
 }
@@ -350,7 +356,7 @@ strong {
 .contact-form h2 {
   font-family: "Big Shoulders Display", cursive;
   font-weight: 700;
-  color: #11b5e4;
+  color: #986dff;
   font-size: 55px;
   letter-spacing: -2px;
   text-align: center;
@@ -361,7 +367,7 @@ strong {
   font-size: 26px;
   font-weight: 500;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .adress-col p {
@@ -379,7 +385,7 @@ strong {
   font-size: 26px;
   font-weight: 500;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
   text-align: center;
 }
 
@@ -416,8 +422,8 @@ strong {
   font-weight: 600;
   padding: 0 10px;
   color: #fff;
-  border: 1px solid #11b5e4;
-  background-color: #11b5e4;
+  border: 1px solid #986dff;
+  background-color: #986dff;
   border-radius: 20px;
   transition: 300ms;
 }
@@ -445,7 +451,7 @@ strong {
   font-size: 30px;
   font-weight: 100;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .footer-logo span {
@@ -471,7 +477,7 @@ strong {
   font-size: 20px;
   font-weight: 300;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
   transition: 300ms;
 }
 
@@ -485,7 +491,7 @@ strong {
   font-size: 14px;
   font-weight: 300;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 /* ----------------------------------------HOME SECTION (ARTICLES)------------------------------------- */
@@ -513,14 +519,14 @@ strong {
 }
 
 .article-link a {
-  color: #11b5e4;
-  border-color: #11b5e4;
+  color: #986dff;
+  border-color: #986dff;
 }
 
 .article-link a:hover {
   color: #fff;
-  background-color: #11b5e4;
-  border-color: #11b5e4;
+  background-color: #986dff;
+  border-color: #986dff;
 }
 
 .article-card-text-2 {
@@ -553,7 +559,7 @@ strong {
   font-size: 25px;
   font-weight: 700;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
   text-transform: uppercase;
 }
 
@@ -713,7 +719,7 @@ strong {
 
 .comment-submit {
   font-family: "Source Sans Pro", sans-serif;
-  background-color: #11b5e4;
+  background-color: #986dff;
   height: 40px;
   text-align: center;
   border: none;
@@ -738,7 +744,7 @@ strong {
 }
 
 .to-login:hover a {
-  color: #11b5e4;
+  color: #986dff;
   text-decoration: none;
 }
 
@@ -752,7 +758,7 @@ strong {
   padding: 10px 30px 12px;
   color: #fff;
   text-align: center;
-  background: #11b5e4;
+  background: #986dff;
   overflow: hidden;
   border-radius: 25px;
   max-width: 200px;
@@ -777,7 +783,7 @@ strong {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #0b7c9c;
+  background: #6c41d2;
   -webkit-transform-origin: 100% 50%;
   transform-origin: 0% 50%;
   -webkit-transform: scale3d(1, 2, 1);
@@ -799,6 +805,7 @@ strong {
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
+  /* backdrop-filter: blur(15px); */
 }
 
 .titre-user strong {
@@ -818,7 +825,7 @@ strong {
   font-size: 24px;
   font-weight: 100;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .navbar-title-admin span {
@@ -844,7 +851,7 @@ strong {
   font-size: 18px;
   font-weight: 400;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .logout-icon {
@@ -865,13 +872,19 @@ strong {
 }
 
 .input-group-text {
-  background-color: #11b5e4;
+  background-color: #986dff;
 }
 
 .btn-login {
-  background-color: #11b5e4;
-  border-color: #11b5e4;
+  background-color: #986dff;
+  border-color: #986dff;
   margin-bottom: 15px;
+  transition: 300ms;
+}
+
+.btn-login:hover {
+  background-color: #6c41d2;
+  border-color: #6c41d2;
 }
 
 .lost-password {
@@ -879,11 +892,11 @@ strong {
 }
 
 .lost-password:hover {
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .login-title {
-  color: #11b5e4;
+  color: #986dff;
   font-weight: 400;
   font-size: 3rem;
 }
@@ -893,14 +906,24 @@ strong {
   font-size: 30px;
 }
 
+.register-link {
+  color: #fff;
+}
+
+.register-link:hover {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
 /* -------------------CONFIRM-PAGE---------------- */
 
 .login-link a {
   text-decoration: none;
   color: #fff;
   font-size: 1rem;
-  background-color: #11b5e4;
-  border: solid 1px #11b5e4;
+  background-color: #986dff;
+  border: solid 1px #986dff;
   padding: 8px 15px;
   border-radius: 0.25rem;
   font-weight: 400;
@@ -938,7 +961,7 @@ strong {
   font-size: 18px;
   font-weight: 400;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
 }
 
 .bg-footer p {
@@ -946,7 +969,7 @@ strong {
   font-size: 24px;
   font-weight: 100;
   letter-spacing: -1px;
-  color: #11b5e4;
+  color: #986dff;
   margin-bottom: 0;
 }
 
@@ -990,8 +1013,8 @@ strong {
 }
 
 .btn-save {
-  background-color: #11b5e4;
-  border-color: #11b5e4;
+  background-color: #986dff;
+  border-color: #986dff;
   color: #fff;
 }
 
@@ -1012,7 +1035,7 @@ strong {
     text-align: left;
   }
 
-  .container-media-title h3 {
+  .container-media-title h1 {
     text-align: left;
   }
 
@@ -1028,7 +1051,7 @@ strong {
 
 @media screen and (min-width: 992px) {
   .adress-col p {
-    border-right: 1px solid #11b5e4;
+    border-right: 1px solid #986dff;
   }
 
   .article-block {

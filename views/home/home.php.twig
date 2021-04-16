@@ -2,7 +2,7 @@
 
 {% block title %}
 
-    <title>CoyoTech Blog | Home</title>
+	<title>CoyoTech Blog | Home</title>
 
 {% endblock %}
 
@@ -20,86 +20,96 @@
 
 {% block content %}
 
-    <!-- ----------------------------------------SECTION (MEDIA AND TITLE)------------------------------------- -->
+	<!-- ----------------------------------------SECTION (MEDIA AND TITLE)------------------------------------- -->
 
-	
+
 	<div class="container-fluid container-media-title pt-5">
+		{% if message %}
+
+			<div class="col-10 col-lg-6 mx-auto alert alert-ok alert-dismissible text-center" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{ message }}
+			</div>
+
+		{% endif %}
 		<div class="row mb-5 no-gutters">
 			<div class="col-md-12">
-				<h3>Le blog de Nicolas <span>Jumeaucourt</span></h3>
+				<h1>Le blog de Nicolas
+					<span>Jumeaucourt</span>
+				</h1>
 			</div>
 		</div>
-  		<div class="row media-title pb-5">
-   			<div class="col-12 col-xl-5 text-center">
-     				<img class="img-fluid rounded pb-12" src="/blog-mvc/assets/images/logo-img.png" alt="Logo CoyoTech Blog">
-   			</div>
-   			<div class="col-12 col-xl-7">
-   				<h1 class="h1-title">Les architectes<br />de vos idées !</h1>
-   				<div class="link-last-article">
+		<div class="row media-title pb-5">
+			<div class="col-12 col-xl-5 text-center">
+				<img class="img-fluid rounded pb-12" src="/blog-mvc/assets/images/logo-img-copie.png" alt="Logo CoyoTech Blog">
+			</div>
+			<div class="col-12 col-xl-7">
+				<h2 class="h1-title">Les architectes<br/>de vos idées !</h2>
+				<div class="link-last-article">
 					<a href="/blog-mvc/article/last">
 						<div class="last-article-visuel"></div>
-					<!-- querie needed to call the last article !! -->
+						<!-- querie needed to call the last article !! -->
 						<p>Lire le dernier article</p>
 					</a>
 				</div>
-   			</div>
-  		</div>
+			</div>
+		</div>
 	</div>
 
 	<!--------------------------------SECTION (HERO IMAGE)------------------------------------- -->
 
 	<div class="container-fluid container-hero-img pt-5">
 		<div class="col-12 col-xl-10 pb-5 hero-img-title">
-			<h2>Vous avez les idées,<br />
-			nous avons les outils !</h2>
+			<h2>Vous avez les idées,<br/>
+				nous avons les outils !</h2>
 		</div>
 		<div class="col-0 col-xl-2"></div>
 	</div>
 
 	<!-- ----------------------------------------SECTION (LAST 3 ARTICLES)------------------------------------- -->
 
-		<!-- querie needed to call up the last 3 articles by joining the article and media tables !!-->
+	<!-- querie needed to call up the last 3 articles by joining the article and media tables !!-->
 	<div class="container-fluid" style="background-image: url(/blog-mvc/assets/images/pattern-shapes.png); background-color:#201d1d;">
-	    <div class="container container-last-articles pt-5">
-		    <div class="row mb-5 no-gutters">
-			    <div class="col-md-2"></div>
-			    <div class="col-12 col-md-8 last-articles-title">
-				<h2>Articles à la une</h2>
-			    </div>
-			    <div class="col-md-2"></div>
-		    </div>
+		<div class="container container-last-articles pt-5">
+			<div class="row mb-5 no-gutters">
+				<div class="col-md-2"></div>
+				<div class="col-12 col-md-8 last-articles-title">
+					<h2>Articles à la une</h2>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
 
-		<div class="row">
-        {% for article in articles %}
-            
-        
-      		<div class="col-12 col-lg-4 mb-5">
-        		<div class="card article-card">
-        			<a href="/blog-mvc/article/view/{{ article.article_id }}">
-        				<img src="/blog-mvc/{{ article.file_name }}" class="card-img-top card-media" alt="...">
-          				<div class="card-body article-card-body">
-          					<div class="card-title-and-date">
-            					<h5 class="card-title article-title">{{ article.title }}</h5>
-            					<p class="card-date">{{ article.update_date|date("d/m/Y") }}</p>
-            				</div>
-            				<p class="card-text article-card-text">{{ article.intro }}</p>
-          				</div>
-        			</a>
-        		</div>
-      		</div>
-        {% endfor %}
-      		
-    	</div>
-    </div>
-    </div>
+			<div class="row">
+				{% for article in articles %}
 
 
+					<div class="col-12 col-lg-4 mb-5">
+						<div class="card article-card">
+							<a href="/blog-mvc/article/view/{{ article.article_id }}">
+								<img src="/blog-mvc/{{ article.file_name }}" class="card-img-top card-media" alt="...">
+								<div class="card-body article-card-body">
+									<div class="card-title-and-date">
+										<h5 class="card-title article-title">{{ article.title }}</h5>
+										<p class="card-date">{{ article.update_date|date("d/m/Y") }}</p>
+									</div>
+									<p class="card-text article-card-text">{{ article.intro }}</p>
+								</div>
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
 
 
 	<!-- ----------------------------------------SECTION (CONTACT FORM)------------------------------------- -->
 
-
-	<div id="contact" class="container-fluid container-contact pt-5 pb-5">
+	<span class="anchor-link" id="contact"></span>
+	<div class="container-fluid container-contact pt-5 pb-5">
 		<div class="container contact-form">
 			<div class="row mb-5 pb-5">
 				<div class="col-md-2"></div>
@@ -111,32 +121,32 @@
 			<div class="row mb-5 pb-5">
 				<div class="col-12 col-lg-3 adress-col text-center">
 					<h4 class="mb-4">Notre adresse</h4>
-					<p>1 rue Edouard Branly<br />
-					60200 Compiègne<br />
-					T. 06.49.27.20.73<br />
-					contact@coyotech.fr</p>
+					<p>1 rue Edouard Branly<br/>
+						60200 Compiègne<br/>
+						T. 06.49.27.20.73<br/>
+						contact@coyotech.fr</p>
 				</div>
 				<div class="col-12 col-lg-9 form-col">
 					<h4 class="mb-4 text-center">À vous de jouer !</h4>
 					<div class="row">
-    					<div class="col-md-12">
-      						<form id="inscriptions">
-        						<div class="row">
-          							<div class="form-group col-md-6">
-            							<input class="form-control mb-3 contact-input contact-input-top" type="text" placeholder="Votre nom">
-            							<input class="form-control mb-3 contact-input" type="text" placeholder="Votre prénom">
-            							<input class="form-control mb-3 contact-input contact-input-bottom" type="email" placeholder="Adresse e-mail">
-          							</div>
-          							<div class="form-group col-md-6">
-          								<textarea class="form-control contact-textarea" name="message" placeholder="Votre message" id="message" rows="5"></textarea>
-          							</div>
-        						</div>
-        						<div class="row">
-        							<input class="contact-btn" type="submit" value="Envoyer">
-        						</div>
-      						</form>
-    					</div>
-  					</div>
+						<div class="col-md-12">
+							<form id="inscriptions" method="post">
+								<div class="row">
+									<div class="form-group col-md-6">
+										<input class="form-control mb-3 contact-input contact-input-top" type="text" name="lastname" placeholder="Votre nom">
+										<input class="form-control mb-3 contact-input" type="text" name="firstname" placeholder="Votre prénom">
+										<input class="form-control mb-3 contact-input contact-input-bottom" type="email" name="email" placeholder="Adresse e-mail">
+									</div>
+									<div class="form-group col-md-6">
+										<textarea class="form-control contact-textarea" name="message" placeholder="Votre message" id="message" rows="5"></textarea>
+									</div>
+								</div>
+								<div class="row">
+									<input class="contact-btn" type="submit" value="Envoyer">
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -147,35 +157,14 @@
 
 {% block footer %}
 
-{{parent()}}
+	{{parent()}}
 
-  {# <!-- Modal -->
-  <div class="modal fade" id="CVModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-scrollable">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title title-cv" id="exampleModalLabel">Mon C.V.</h5>
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-		<div class="modal-body cv-modal-body">
-			<img src="/blog-mvc/cv.jpg" alt="">
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le C.V.</button>
-		</div>
-	  </div>
-	</div>
-  </div> #}
-	
 
 {% endblock %}
 
 
-
 {% block scripts %}
-{{parent()}}
-	
+	{{parent()}}
+
 
 {% endblock %}

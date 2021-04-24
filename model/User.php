@@ -130,7 +130,7 @@ class User extends Connect
 
         $visitor = $user['nickname'];
 
-        mail($user['login'], "CoyoTech Blog - Confirmation de votre compte.", "Bonjour $visitor,\n\nVous avez demander à ouvrir un compte sur CoyoTech Blog. Vous trouverez ci-dessous un lien vous permettant de finaliser votre inscription.\n\nhttp://localhost:8888/blog-mvc/user/confirm/$token\n\nSi le lien ci-dessus ne fonctionne pas, vous pouvez copier / coller cette adresse directement dans la barre d'adresse de votre navigateur internet afin de finaliser votre inscription.");
+        mail($user['login'], "CoyoTech Blog - Confirmation de votre compte.", "Bonjour $visitor,\n\nVous avez demander à ouvrir un compte sur CoyoTech Blog. Vous trouverez ci-dessous un lien vous permettant de finaliser votre inscription.\n\nhttp://coyotech.fr/blog-mvc/user/confirm/$token\n\nSi le lien ci-dessus ne fonctionne pas, vous pouvez copier / coller cette adresse directement dans la barre d'adresse de votre navigateur internet afin de finaliser votre inscription.");
     }
     
     /**

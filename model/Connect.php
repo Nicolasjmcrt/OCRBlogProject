@@ -16,8 +16,10 @@ class Connect
     }
     protected function dbConnect()
     {
-
-        $dtb = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root', array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+        $config=parse_ini_file("./conf/config.ini");
+        // print_r($config);
+        // exit();
+        $dtb = new \PDO('mysql:host='.$config['server'].';dbname='.$config['dbname'].';charset=utf8', $config['user'], $config['password'], array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
         return $dtb;
     }
 }

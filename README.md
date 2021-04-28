@@ -4,7 +4,7 @@ Procédure à suivre pour l'installation du projet :
 
 1/Cloner ou télécharger le projet complet.
 
-2/Copier l'intégralité du dossier "blog-mvc" dans le dossier htdocs pour l'application MAMP (Mac ou PC) ou le dossier www pour l'application WAMP sur PC.
+2/Copier l'intégralité du dossier "OCRBlogProject" dans le dossier htdocs pour l'application MAMP (Mac ou PC) ou le dossier www pour l'application WAMP sur PC et le renommer "blog-mvc" (très important !!).
 
 3/Ouvrez le fichier config.ini du dossier "conf" et suivez les instructions contenues dans ce fichier.
 
